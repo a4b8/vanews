@@ -1,17 +1,30 @@
 on:
   rss:
-    url: https://hnrss.org/newest?points=300&count=3
+    url: https://www.vaticannews.va/de.rss.xml
+    config:
+      limit: 1
 jobs:
-  print:
-    name: Print
+  mastodon:
+    name: post2mastodon
     runs-on: ubuntu-latest
     steps:
-      - name: Print Outputs
-        env:
-          title: ${{on.rss.outputs.title}}
-          contentSnippet: ${{on.rss.outputs.contentSnippet}}
-          link: ${{on.rss.outputs.link}}
-        run: |
-          echo title: $title
-          echo contentSnippet: $contentSnippet
-          echo link: $link
+      - name: send to mastodon
+        uses: actionsflow/axios@v1
+        with:
+          url: ${{ secrets.MASTODON_POST_URL }}
+          method: 'POST'
+          accept: 200,201,204
+          content-type: application/x-www-form-urlencoded
+          data: 'status=<<<${{on.rss.outputs.content}}>>> <<<${{on.rss.outputs.link}}>>>'
+          timeout: 10000
+          is_debug: false
+  tweet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ethomson/send-tweet-action@v1
+        with:
+          status: "${{on.rss.outputs.content}} ${{on.rss.outputs.link}}"
+          consumer-key: ${{ secrets.TWITTER_CONSUMER_KEY }}
+          consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+          access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          access-token-secret: ${{ secrets.TWITTER_ACCESS_SECRET }}
