@@ -1,10 +1,7 @@
 on:
   rss:
     url:
-      - https://www.cdl-rlp.de/Lebensschutz.rss
       - https://katholischlogisch.blog/feed/rss2
-    config:
-      limit: 20
 jobs:
   mastodon:
     name: post2mastodon
@@ -17,7 +14,7 @@ jobs:
           method: 'POST'
           accept: 200,201,204
           content-type: application/x-www-form-urlencoded
-          data: 'status=${{on.rss.outputs.content}} ${{on.rss.outputs.link}}'
+          data: 'status=${{on.rss.outputs.title}} ${{on.rss.outputs.link}}'
           timeout: 10000
           is_debug: false
   tweet:
