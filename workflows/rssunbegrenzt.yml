@@ -3,6 +3,7 @@ on:
     url:
       - https://katholischlogisch.blog/feed/rss2
       - https://www.alfa-ev.de/feed/
+      - https://www.bundesverband-lebensrecht.de/feed/
 jobs:
   mastodon:
     name: post2mastodon
