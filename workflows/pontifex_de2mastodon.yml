@@ -1,0 +1,27 @@
+on:
+  twitter:
+    api: statuses/user_timeline
+    auth:
+      consumer_key: ${{ secrets.TWITTER_CONSUMER_KEY }}
+      consumer_secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+      access_token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+      access_token_secret: ${{ secrets.TWITTER_ACCESS_SECRET }}
+    params:
+      screen_name: Pontifex_de
+      exclude_replies: true,
+      include_rts: false,
+jobs:
+  mastodon:
+    name: post2mastodon
+    runs-on: ubuntu-latest
+    steps:
+      - name: send to mastodon
+        uses: actionsflow/axios@v1
+        with:
+          url: ${{ secrets.MASTODON_POST_URL }}
+          method: 'POST'
+          accept: 200,201,204
+          content-type: application/x-www-form-urlencoded
+          data: 'status=Franziskus I: <<<${{ on.twitter.outputs.full_text }}>>>'
+          timeout: 10000
+          is_debug: false
