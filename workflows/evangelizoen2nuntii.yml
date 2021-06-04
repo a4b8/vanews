@@ -4,7 +4,10 @@ on:
     config:
       filter:
         content:
-            $regex: ....+
+          $regex: ....+
+        title:
+          $not:
+            $regex: Commentary
 jobs:
   post2untii:
     name: Request
