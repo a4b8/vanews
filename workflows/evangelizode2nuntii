@@ -13,11 +13,11 @@ jobs:
       - name: Make a HTTP Request
         uses: actionsflow/axios@main
         with:
-          url: ${{secrets.NUNTII_WEBHOOK_URL}}
+          url: ${{ secrets.NUNTII_WEBHOOK_URL }}
           method: POST
           body: |
             {
-              "value1": "<<<${{on.rss.outputs.title}}>>>",
-              "value2": "<<<${{on.rss.outputs.content}}>>>",
+              "value1": "<<<${{ on.rss.outputs.title }}>>>",
+              "value2": "<<<${{ on.rss.outputs.content }}>>>",
               "value3": "deutsch"
             }
