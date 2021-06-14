@@ -18,6 +18,19 @@ jobs:
           data: 'status=${{on.rss.outputs.title}} ${{on.rss.outputs.link}}'
           timeout: 10000
           is_debug: false
+  mastodon2:
+    name: post2mastodon2
+    runs-on: ubuntu-latest
+    steps:
+      - name: send to mastodon
+        uses: actionsflow/axios@v1
+        with:
+          url: ${{ secrets.MASTODON_POST_URL_2 }}
+          method: 'POST'
+          content-type: application/x-www-form-urlencoded
+          data: 'status=${{on.rss.outputs.title}} ${{on.rss.outputs.link}}'
+          timeout: 10000
+          is_debug: false          
   tweet:
     runs-on: ubuntu-latest
     steps:
