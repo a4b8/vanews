@@ -9,7 +9,7 @@ jobs:
     name: post2mastodon
     runs-on: ubuntu-latest
     steps:
-      - name: send to mastodon
+      - name: send to munich
         uses: actionsflow/axios@v1
         with:
           url: ${{ secrets.MASTODON_POST_URL }}
@@ -22,7 +22,7 @@ jobs:
     name: post2mastodon2
     runs-on: ubuntu-latest
     steps:
-      - name: send to mastodon
+      - name: send to bayern
         uses: actionsflow/axios@v1
         with:
           url: ${{ secrets.MASTODON_POST_URL_2 }}
