@@ -1,6 +1,6 @@
 on:
   rss:
-    url: https://www.buzzfeed.com/world.xml # https://www.vaticannews.va/de.rss.xml
+    url: https://www.tagesschau.de/thema/rss/ # https://www.vaticannews.va/de.rss.xml
 #    config:
 #      limit: 9999
 jobs:
