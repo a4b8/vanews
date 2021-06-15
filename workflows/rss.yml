@@ -65,12 +65,12 @@ jobs:
 
           # Params can be passed through json object string 
           # support escape string, use <<<${{env.TEST}}>>>
-          params: '{ "status": "<<<${{on.rss.outputs.content}}>>> 👉🏻${{on.rss.outputs.link}}", "visibility": "unlisted" }'
+          params: '{ "status": "<<<${{on.rss.outputs.content}}>>> ${{on.rss.outputs.link}}", "visibility": "unlisted" }'
 
           # Body request
           # Apply only to POST|PUT request
           # support escape string, use <<<${{env.TEST}}>>>
-          # data: '{ "status": "<<<${{on.rss.outputs.content}}>>> 👉🏻${{on.rss.outputs.link}}", "visibility": "unlisted" }'
+          # data: '{ "status": "<<<${{on.rss.outputs.content}}>>> ${{on.rss.outputs.link}}", "visibility": "unlisted" }'
           # data: '{ "status": "Testpost" }'
 
           # Request timeout (millisec)
