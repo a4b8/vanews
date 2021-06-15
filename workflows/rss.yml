@@ -4,8 +4,8 @@ on:
       - https://www.vaticannews.va/de.rss.xml
       - https://www.buzzfeed.com/world.xml
       - https://hnrss.org/newest?points=300
-    config:
-      limit: 9999
+#    config:
+#      limit: 9999
 jobs:
 #  mastodon:
 #    name: post2mastodon
