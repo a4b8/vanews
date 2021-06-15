@@ -1,8 +1,8 @@
 on:
   rss:
-    url: https://www.tagesschau.de/thema/rss/ # https://www.vaticannews.va/de.rss.xml
-#    config:
-#      limit: 9999
+    url: https://www.vaticannews.va/de.rss.xml
+    config:
+      limit: 1
 jobs:
 #  mastodon:
 #    name: post2mastodon
@@ -100,14 +100,13 @@ jobs:
           # If this input is set, it will ignore other inputs that related to the config
           # The path file is start from root directory of the repo
           # custom-config: .github/workflows/curl-config.json          
-#  tweet:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: ethomson/send-tweet-action@v1
-#        with:
-#          status: "${{on.rss.outputs.title}} ${{on.rss.outputs.link}}"
-#          consumer-key: ${{ secrets.TWITTER_CONSUMER_KEY }}
-#          consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
-#          access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
-#          access-token-secret: ${{ secrets.TWITTER_ACCESS_SECRET }}
-#
+  tweet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ethomson/send-tweet-action@v1
+        with:
+          status: "${{on.rss.outputs.title}} ${{on.rss.outputs.link}}"
+          consumer-key: ${{ secrets.TWITTER_CONSUMER_KEY }}
+          consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+          access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          access-token-secret: ${{ secrets.TWITTER_ACCESS_SECRET }}
