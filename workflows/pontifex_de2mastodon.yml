@@ -20,6 +20,7 @@ jobs:
         with:
           url: ${{ secrets.MASTODON_POST_URL }}
           method: 'POST'
+          accept: 200,201,204
           content-type: application/x-www-form-urlencoded
           data: 'status=Franziskus I: <<<${{ on.twitter.outputs.full_text }}>>>'
           timeout: 10000
@@ -33,6 +34,7 @@ jobs:
         with:
           url: ${{ secrets.MASTODON_POST_URL_2 }}
           method: 'POST'
+          accept: 200,201,204
           content-type: application/x-www-form-urlencoded
           data: 'status=Franziskus I: ${{ on.twitter.outputs.full_text }}'
           timeout: 10000
