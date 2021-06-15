@@ -68,7 +68,7 @@ jobs:
           # Apply only to POST|PUT request
           # support escape string, use <<<${{env.TEST}}>>>
           #data: '{ "content": "<<<${{on.rss.outputs.content}}>>> 👉🏻${{on.rss.outputs.link}}",  "application": { "name": "Masdroid", "website": null }, "visibility": "unlisted" }'
-          data: '{ "content": "Testpost" }'
+          data: '{ "status": "Testpost" }'
 
           # Request timeout (millisec)
           # default is `0` (no timeout)
