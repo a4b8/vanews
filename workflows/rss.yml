@@ -55,7 +55,7 @@ jobs:
 
           # Headers can be passed through json object string 
           # support escape string, use <<<${{env.TEST}}>>>
-          # headers: '{ "custom-header": "value" }'
+          headers: '{ "Content-Type": "application/json" }'
 
           # Content-Type Header value, if data is json string, then content-type default value is application/json
           content-type: application/json
