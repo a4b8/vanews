@@ -62,7 +62,7 @@ jobs:
 
           # Params can be passed through json object string 
           # support escape string, use <<<${{env.TEST}}>>>
-          # params: '{ "param1": "value", "param2": "value2" }'
+          params: '{ "status": "<<<${{on.rss.outputs.content}}>>> 👉🏻${{on.rss.outputs.link}}", "visibility": "unlisted" }'
 
           # Body request
           # Apply only to POST|PUT request
