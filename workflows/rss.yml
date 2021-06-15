@@ -1,9 +1,6 @@
 on:
   rss:
-    url:
-      - https://www.vaticannews.va/de.rss.xml
-      - https://www.buzzfeed.com/world.xml
-      - https://hnrss.org/newest?points=300
+    url: https://www.vaticannews.va/de.rss.xml
 #    config:
 #      limit: 9999
 jobs:
@@ -65,13 +62,13 @@ jobs:
 
           # Params can be passed through json object string 
           # support escape string, use <<<${{env.TEST}}>>>
-          params: '{ "status": "<<<${{on.rss.outputs.content}}>>> ${{on.rss.outputs.link}}", "visibility": "unlisted" }'
+          # params: '{ "status": "<<<${{on.rss.outputs.content}}>>> ${{on.rss.outputs.link}}", "visibility": "unlisted" }'
 
           # Body request
           # Apply only to POST|PUT request
           # support escape string, use <<<${{env.TEST}}>>>
           # data: '{ "status": "<<<${{on.rss.outputs.content}}>>> ${{on.rss.outputs.link}}", "visibility": "unlisted" }'
-          # data: '{ "status": "Testpost" }'
+          data: '{ "status": "Testpost" }'
 
           # Request timeout (millisec)
           # default is `0` (no timeout)
