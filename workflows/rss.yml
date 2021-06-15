@@ -5,7 +5,7 @@ on:
       - https://www.buzzfeed.com/world.xml
       - https://hnrss.org/newest?points=300
     config:
-      limit: 1
+      limit: 9999
 jobs:
 #  mastodon:
 #    name: post2mastodon
@@ -103,13 +103,14 @@ jobs:
           # If this input is set, it will ignore other inputs that related to the config
           # The path file is start from root directory of the repo
           # custom-config: .github/workflows/curl-config.json          
-  tweet:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: ethomson/send-tweet-action@v1
-        with:
-          status: "${{on.rss.outputs.title}} ${{on.rss.outputs.link}}"
-          consumer-key: ${{ secrets.TWITTER_CONSUMER_KEY }}
-          consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
-          access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
-          access-token-secret: ${{ secrets.TWITTER_ACCESS_SECRET }}
+#  tweet:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: ethomson/send-tweet-action@v1
+#        with:
+#          status: "${{on.rss.outputs.title}} ${{on.rss.outputs.link}}"
+#          consumer-key: ${{ secrets.TWITTER_CONSUMER_KEY }}
+#          consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+#          access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+#          access-token-secret: ${{ secrets.TWITTER_ACCESS_SECRET }}
+#
