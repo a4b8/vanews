@@ -1,37 +1,9 @@
 on:
   rss:
-    url: http://rss.dw.com/xml/rss-de-wissenschaft #https://www.vaticannews.va/de.rss.xml
+    url: https://www.vaticannews.va/de.rss.xml
     config:
       limit: 1
 jobs:
-#  mastodon:
-#    name: post2mastodon
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: send to munich
-#        uses: actionsflow/axios@v1
-#        with:
-#          url: ${{ secrets.MASTODON_POST_URL }}
-#          method: 'POST'
-#          accept: 200,201,204
-#          content-type: application/x-www-form-urlencoded
-#          data: 'status=<<<${{on.rss.outputs.content}}>>> <<<${{on.rss.outputs.link}}>>>'
-#          timeout: 10000
-#          is_debug: false
-#  mastodon2:
-#    name: post2mastodon2
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: send to bayern
-#        uses: actionsflow/axios@v1
-#        with:
-#          url: ${{ secrets.MASTODON_POST_URL_2 }}
-#          method: 'POST'
-#          accept: 200,201,204
-#          content-type: application/x-www-form-urlencoded
-#          data: 'status=${{on.rss.outputs.content}} ${{on.rss.outputs.link}}'
-#          timeout: 10000
-#          is_debug: false
   fediverse-mastodon:
     name: send2mastodon
     runs-on: ubuntu-latest
@@ -41,7 +13,7 @@ jobs:
         with:
           access-token: ${{ secrets.MASTODON_ACCESS_TOKEN }}
           message: "${{on.rss.outputs.content}} ${{on.rss.outputs.link}}"
-          host: ${{ secrets.MASTODON_ACCESS_TOKEN }} # If not using default "mastodon.social"          
+          host: "muenchen.social" # If not using default "mastodon.social"          
   tweet:
     runs-on: ubuntu-latest
     steps:
