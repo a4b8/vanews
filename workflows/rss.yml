@@ -41,7 +41,7 @@ jobs:
         with:
           access-token: ${{ secrets.MASTODON_ACCESS_TOKEN }}
           message: "${{on.rss.outputs.content}} ${{on.rss.outputs.link}}"
-          host: ${{ secrets.MASTODON_HOST }} # If not using default "mastodon.social"          
+#          host: ${{ secrets.MASTODON_HOST }} # If not using default "mastodon.social"          
   tweet:
     runs-on: ubuntu-latest
     steps:
