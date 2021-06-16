@@ -1,6 +1,6 @@
 on:
   rss:
-    url: https://www.vaticannews.va/de.rss.xml
+    url: https://www.tagesschau.de/resources/xsl/rss2.jsp #https://www.vaticannews.va/de.rss.xml
     config:
       limit: 1
 jobs:
