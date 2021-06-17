@@ -1,0 +1,27 @@
+on:
+  rss:
+    url: http://evangelizo.org/rss/v2/evangelizo_rss-de.xml
+    config:
+      every: "0 8 * * *"
+      filter:
+        content:
+          $regex: ....+
+        title:
+          $regex: (Evangelium|Psalm)
+jobs:
+  send2matrix:
+   runs-on: ubuntu-latest
+   steps:
+     - name: send message
+       uses: s3krit/matrix-message-action@v0.0.3
+       with:
+         room_id: ${{ secrets.MATRIX_ROOM_ID }}
+         access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
+         message: |
+              "<b>${{on.rss.outputs.title}}</b>:
+              <b> </b>
+              ${{on.rss.outputs.content}}
+              <b> </b>
+              <i><a href="${{on.rss.outputs.link}}">${{on.rss.outputs.link}}</a>
+              </i>"
+         server: "synod.im"
