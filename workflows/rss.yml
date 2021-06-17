@@ -4,16 +4,6 @@ on:
     config:
       limit: 1
 jobs:
-  fediverse-mastodon:
-    name: send2mastodon
-    runs-on: ubuntu-latest
-    steps:
-      - name: 'Call fediverse'
-        uses: rzr/fediverse-action@master
-        with:
-          access-token: ${{ secrets.MASTODON_ACCESS_TOKEN }}
-          message: "${{on.rss.outputs.content}} ${{on.rss.outputs.link}}"
-          host: "muenchen.social" # If not using default "mastodon.social"          
   tweet:
     runs-on: ubuntu-latest
     steps:
