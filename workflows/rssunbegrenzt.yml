@@ -13,7 +13,7 @@ jobs:
         uses: rzr/fediverse-action@master
         with:
           access-token: ${{ secrets.MASTODON_ACCESS_TOKEN }}
-          message: "${{on.rss.outputs.content}} ${{on.rss.outputs.link}}"
+          message: "${{on.rss.outputs.title}} ${{on.rss.outputs.link}}"
           host: "muenchen.social" # If not using default "mastodon.social"
   tweet:
     runs-on: ubuntu-latest
