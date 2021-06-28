@@ -1,0 +1,25 @@
+on:
+  rss:
+    url:
+      - https://www.alfa-ev.de/feed/
+      - https://www.bundesverband-lebensrecht.de/feed/
+jobs:
+  email:
+    name: Post a email
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send mail
+        uses: dawidd6/action-send-mail@v2
+        with:
+          server_address: ${{secrets.EMAIL_SERVER_ADDRESS}}
+          server_port: ${{secrets.EMAIL_SERVER_PORT}}
+          username: ${{secrets.EMAIL_USERNAME}}
+          password: ${{secrets.EMAIL_PASSWORD}}
+          subject: ${{ on.rss.outputs.title }}
+          # Literal body:
+          body: ${{ on.rss.outputs.content }}
+          # Read file contents as body:
+          to: ${{secrets.EMAIL_TO_LFA}}
+          from: ${{secrets.EMAIL_FROM}}
+          # Optional content type (defaults to text/plain):
+          content_type: text/html
