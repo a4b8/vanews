@@ -39,7 +39,7 @@ jobs:
           # Literal body:
           body: ${{ on.rss.outputs.content }}
           # Read file contents as body:
-          to: ${{secrets.EMAIL_TO}}
+          to: ${{secrets.EMAIL_TO_LFA}}
           from: ${{secrets.EMAIL_FROM}}
           # Optional content type (defaults to text/plain):
           content_type: text/html
