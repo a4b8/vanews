@@ -2,7 +2,7 @@ on:
   rss:
     url: https://www.die-tagespost.de/rss-feed/
     config:
-      every: "40 * * * *"
+      every: "0 */2 * * *"
       limit: 1
 jobs:
   tweet:
@@ -33,5 +33,5 @@ jobs:
         uses: rzr/fediverse-action@master
         with:
           access-token: ${{ secrets.MASTODON_ACCESS_TOKEN }}
-          message: "${{on.rss.outputs.content}} ${{on.rss.outputs.link}}"
+          message: "${{on.rss.outputs.title}} ${{on.rss.outputs.link}}"
           host: "muenchen.social" # If not using default "mastodon.social"
