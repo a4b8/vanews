@@ -1,6 +1,6 @@
 on:
   rss:
-    url: https://www.die-tagespost.de/rss-feed/
+    url: https://www.die-tagespost.de/storage/rss/rss/die-tagespost-komplett.xml
     config:
       every: "0 */2 * * *"
       limit: 1
