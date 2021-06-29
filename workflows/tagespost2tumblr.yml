@@ -15,5 +15,5 @@ jobs:
             {
               "value1": "<<<${{ on.rss.outputs.title }}>>>",
               "value2": "<<<${{ on.rss.outputs.content }}>>> </br> ${{on.rss.outputs.link}}",
-              "value3": "Vatican News"
+              "value3": "Die Tagespost"
             }
