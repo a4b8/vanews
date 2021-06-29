@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: ethomson/send-tweet-action@v1
         with:
-          status: "<<<${{on.rss.outputs.title}}>>> ${{on.rss.outputs.link}}"
+          status: "${{on.rss.outputs.title}} ${{on.rss.outputs.link}}"
           consumer-key: ${{ secrets.TWITTER_CONSUMER_KEY }}
           consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
           access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
@@ -23,7 +23,7 @@ jobs:
        with:
          room_id: ${{ secrets.MATRIX_NEWSROOM_ID }}
          access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
-         message: "<<<${{on.rss.outputs.title}}>>> ${{on.rss.outputs.link}}"
+         message: "${{on.rss.outputs.title}} ${{on.rss.outputs.link}}"
          server: "synod.im"
   fediverse-mastodon:
     name: send2mastodon
@@ -33,5 +33,5 @@ jobs:
         uses: rzr/fediverse-action@master
         with:
           access-token: ${{ secrets.MASTODON_ACCESS_TOKEN }}
-          message: "<<<${{on.rss.outputs.title}}>>> ${{on.rss.outputs.link}}"
+          message: "${{on.rss.outputs.title}} ${{on.rss.outputs.link}}"
           host: "muenchen.social" # If not using default "mastodon.social"
