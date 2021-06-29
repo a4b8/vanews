@@ -1,0 +1,19 @@
+on:
+  rss:
+    url: https://www.die-tagespost.de/storage/rss/rss/die-tagespost-komplett.xml
+jobs:
+  post2tumblr:
+    name: Request
+    runs-on: ubuntu-latest
+    steps:
+      - name: Make a HTTP Request
+        uses: actionsflow/axios@main
+        with:
+          url: ${{ secrets.TUMBLR_WEBHOOK_URL }}
+          method: POST
+          body: |
+            {
+              "value1": "<<<${{ on.rss.outputs.title }}>>>",
+              "value2": "<<<${{ on.rss.outputs.content }}>>> </br> ${{on.rss.outputs.link}}",
+              "value3": "Vatican News"
+            }
