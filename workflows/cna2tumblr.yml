@@ -15,14 +15,10 @@ jobs:
     name: Request
     runs-on: ubuntu-latest
     steps:
-      - name: Make a HTTP Request
-        uses: actionsflow/axios@main
+      - uses: actionsflow/ifttt-webhook-action@v1
         with:
-          url: ${{ secrets.TUMBLR_WEBHOOK_URL }}
-          method: POST
-          body: |
-            {
-              "value1": "${{ on.twitter.outputs.full_text }}",
-              "value2": "${{ on.twitter.outputs.full_text }}",
-              "value3": "Catholic News Agency Deutsch"
-            }
+          event: post2tumblr
+          key: ${{ secrets.TUMBLR_WEBHOOK_KEY }}
+          value1: ${{ on.twitter.outputs.full_text }}
+          value2: "${{ on.twitter.outputs.full_text }}"
+          value3: "Catholic News Agency Deutsch"
