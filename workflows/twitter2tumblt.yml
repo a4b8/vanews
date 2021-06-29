@@ -1,0 +1,28 @@
+on:
+  twitter:
+    api: statuses/user_timeline
+    auth:
+      consumer_key: ${{ secrets.TWITTER_CONSUMER_KEY }}
+      consumer_secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+      access_token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+      access_token_secret: ${{ secrets.TWITTER_ACCESS_SECRET }}
+    params:
+      screen_name: sakrumverum
+      exclude_replies: true,
+      include_rts: false,
+jobs:
+  post2tumblr:
+    name: Request
+    runs-on: ubuntu-latest
+    steps:
+      - name: Make a HTTP Request
+        uses: actionsflow/axios@main
+        with:
+          url: ${{ secrets.TUMBLR_WEBHOOK_URL }}
+          method: POST
+          body: |
+            {
+              "value1": "${{ on.twitter.outputs.full_text }}",
+              "value2": "${{ on.twitter.outputs.full_text }}",
+              "value3": "sakrum"
+            }
