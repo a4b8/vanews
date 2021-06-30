@@ -1,6 +1,15 @@
 on:
   rss:
     url: https://katholischlogisch.blog/feed/rss2
+    config:
+      active: true
+      filter:
+        content:
+          $regex: ....+
+        title:
+          $regex: ....+
+        link:
+          $regex: ....+
 jobs:
   post2tumblr:
     name: Request
