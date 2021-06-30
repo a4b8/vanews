@@ -12,6 +12,9 @@ on:
       include_rts: false
     config:
       active: true
+      filter:
+        full_text:
+          $regex: ....+
 jobs:
   post2tumblr:
     name: Request
