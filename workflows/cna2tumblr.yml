@@ -8,8 +8,10 @@ on:
       access_token_secret: ${{ secrets.TWITTER_ACCESS_SECRET }}
     params:
       screen_name: CNAdeutsch
-      exclude_replies: true,
-      include_rts: false,
+      exclude_replies: true
+      include_rts: false
+    config:
+      active: true
 jobs:
   post2tumblr:
     name: Request
@@ -17,7 +19,7 @@ jobs:
     steps:
       - uses: actionsflow/ifttt-webhook-action@v1
         with:
-          event: post2tumblr
+          event: postCNA2tumblr
           key: ${{ secrets.TUMBLR_WEBHOOK_KEY }}
           value1: ${{ on.twitter.outputs.full_text }}
           value2: "${{ on.twitter.outputs.full_text }}"
