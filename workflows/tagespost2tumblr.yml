@@ -2,7 +2,14 @@ on:
   rss:
     url: https://www.die-tagespost.de/storage/rss/rss/die-tagespost-komplett.xml
     config:
-      active: false
+      active: true
+      filter:
+        content:
+          $regex: ....+
+        title:
+          $regex: ....+
+        link:
+          $regex: ....+
 jobs:
   post2tumblr:
     name: Request
