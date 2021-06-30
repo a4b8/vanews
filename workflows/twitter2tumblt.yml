@@ -10,6 +10,8 @@ on:
       screen_name: sakrumverum
       exclude_replies: true,
       include_rts: false,
+    config:
+      active: false
 jobs:
   post2tumblr:
     name: Request
