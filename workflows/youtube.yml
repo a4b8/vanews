@@ -48,3 +48,14 @@ jobs:
           from: ${{secrets.EMAIL_FROM}}
           # Optional content type (defaults to text/plain):
           content_type: text/html
+  video2tumblr:
+    name: Request
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actionsflow/ifttt-webhook-action@v1
+        with:
+          event: video2tumblr
+          key: ${{ secrets.TUMBLR_WEBHOOK_KEY }}
+          value1: ${{on.youtube.outputs.link}}
+          value2: ${{on.youtube.outputs.description}}
+          value3: "YouTube Videos"
