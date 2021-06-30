@@ -10,6 +10,8 @@ on:
       screen_name: Pontifex_de
       exclude_replies: true,
       include_rts: false,
+    config:
+      active: false
 jobs:
   post2tumblr:
     name: Request
