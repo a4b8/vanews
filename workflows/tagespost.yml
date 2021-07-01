@@ -13,8 +13,7 @@ on:
         link:
           $regex: ....+
       format: |
-        item.title = unescape(item.title)
-        item.content = unescape(item.content)
+        item.title = item.title.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&auml;/g, 'ä').replace(/&ouml;/g, 'ö').replace(/&uuml;/g, 'ü').replace(/&szlig;/g, 'ß')
         return item;
 jobs:
   tweet:
