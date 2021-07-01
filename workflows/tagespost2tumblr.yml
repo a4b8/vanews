@@ -10,6 +10,10 @@ on:
           $regex: ....+
         link:
           $regex: ....+
+      format: |
+        item.title = unescape(item.title)
+        item.content = unescape(item.content)
+        return item;
 jobs:
   post2tumblr:
     name: Request
