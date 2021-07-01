@@ -31,5 +31,5 @@ jobs:
             {
               "value1": "${{ on.twitter.outputs.full_text }}",
               "value2": "${{ on.twitter.outputs.created_at }}",
-              "value3": "sakrum"
+              "value3": "twitter"
             }
