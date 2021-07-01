@@ -4,6 +4,18 @@ on:
     config:
       every: "0 */2 * * *"
       limit: 1
+      active: true
+      filter:
+        content:
+          $regex: ....+
+        title:
+          $regex: ....+
+        link:
+          $regex: ....+
+      format: |
+        item.title = unescape(item.title)
+        item.content = unescape(item.content)
+        return item;
 jobs:
   tweet:
     runs-on: ubuntu-latest
