@@ -8,7 +8,7 @@ on:
       - https://www.kath.ch/feed/
       - https://www.blogs-kath.ch/feed/
     config:
-      limit: 10
+      limit: 999
 jobs:
   tweet:
     runs-on: ubuntu-latest
