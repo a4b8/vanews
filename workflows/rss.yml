@@ -1,15 +1,18 @@
 on:
   rss:
-    url: https://www.vaticannews.va/de.rss.xml
+    url:
+      - https://www.vaticannews.va/de.rss.xml
+      - https://www.kath.net/ticker/index.xml
+      - https://www.katholisch.de/aktuelles/aktuelle-artikel.rss
     config:
-      limit: 1
+      limit: 10
 jobs:
   tweet:
     runs-on: ubuntu-latest
     steps:
       - uses: ethomson/send-tweet-action@v1
         with:
-          status: "${{on.rss.outputs.title}} ${{on.rss.outputs.link}}"
+          status: ${{on.rss.outputs.title}} ${{on.rss.outputs.link}}
           consumer-key: ${{ secrets.TWITTER_CONSUMER_KEY }}
           consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
           access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
