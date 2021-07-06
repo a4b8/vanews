@@ -30,7 +30,7 @@ jobs:
     name: Post a email
     runs-on: ubuntu-latest
     steps:
-      - name: Send mail
+      - name: Send Blogger post by mail
         uses: dawidd6/action-send-mail@v2
         with:
           server_address: ${{secrets.EMAIL_SERVER_ADDRESS}}
@@ -45,6 +45,24 @@ jobs:
             ${{on.youtube.outputs.link}}
           # Read file contents as body:
           to: ${{secrets.EMAIL_TO_LFA}}
+          from: ${{secrets.EMAIL_FROM}}
+          # Optional content type (defaults to text/plain):
+          content_type: text/html
+      - name: Send debug mail
+        uses: dawidd6/action-send-mail@v2
+        with:
+          server_address: ${{secrets.EMAIL_SERVER_ADDRESS}}
+          server_port: ${{secrets.EMAIL_SERVER_PORT}}
+          username: ${{secrets.EMAIL_USERNAME}}
+          password: ${{secrets.EMAIL_PASSWORD}}
+          subject: ${{ on.rss.outputs.title }}
+          # Literal body:
+          body: |
+            ${{on.youtube.outputs.title}}
+            ${{on.youtube.outputs.description}}
+            ${{on.youtube.outputs.link}}
+          # Read file contents as body:
+          to: ${{secrets.EMAIL_TO_DEBUG}}
           from: ${{secrets.EMAIL_FROM}}
           # Optional content type (defaults to text/plain):
           content_type: text/html
