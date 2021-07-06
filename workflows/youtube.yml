@@ -37,7 +37,7 @@ jobs:
           server_port: ${{secrets.EMAIL_SERVER_PORT}}
           username: ${{secrets.EMAIL_USERNAME}}
           password: ${{secrets.EMAIL_PASSWORD}}
-          subject: ${{ on.rss.outputs.title }}
+          subject: ${{on.youtube.outputs.title}}
           # Literal body:
           body: |
             ${{on.youtube.outputs.title}}
@@ -55,7 +55,7 @@ jobs:
           server_port: ${{secrets.EMAIL_SERVER_PORT}}
           username: ${{secrets.EMAIL_USERNAME}}
           password: ${{secrets.EMAIL_PASSWORD}}
-          subject: ${{ on.rss.outputs.title }}
+          subject: ${{on.youtube.outputs.title}}
           # Literal body:
           body: |
             ${{on.youtube.outputs.title}}
