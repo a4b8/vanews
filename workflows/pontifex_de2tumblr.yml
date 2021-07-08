@@ -11,7 +11,7 @@ on:
       exclude_replies: true,
       include_rts: false,
     config:
-      active: false
+      active: true
 jobs:
   post2tumblr:
     name: Request
@@ -25,6 +25,6 @@ jobs:
           body: |
             {
               "value1": "Franziskus I: ${{ on.twitter.outputs.full_text }}",
-              "value2": "Franziskus I: ${{ on.twitter.outputs.full_text }}",
+              "value2": "${{ on.twitter.outputs.source }}",
               "value3": "Franziskus I."
             }
