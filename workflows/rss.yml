@@ -3,7 +3,7 @@ on:
     url:
       - https://www.vaticannews.va/de.rss.xml
       - https://www.katholisch.de/aktuelles/aktuelle-artikel.rss
-      - https://www.kath.net/ticker/index.xml
+#     - https://www.kath.net/ticker/index.xml
       - http://feeds.feedburner.com/kathnews-redaktion
       - https://www.kath.ch/feed/
       - https://www.blogs-kath.ch/feed/
