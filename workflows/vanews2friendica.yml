@@ -1,0 +1,67 @@
+on:
+  rss:
+    url: https://www.vaticannews.va/de.rss.xml
+    config:
+      every: "0 */2 * * *"
+      limit: 1
+jobs:
+  post-vanews2friendica:
+    name: 'Perform REST API'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Call friendica API'
+        uses: actionsflow/axios@v1
+        with:
+          # The target URL
+          # Required: true if custom-config is not set
+          url: https://libranet.de/api/statuses/update.json
+
+          # The request method, basically it's one of GET|POST|PUT|PATCH
+          # Default is GET 
+          method: 'POST'
+
+          # List of response status codes to be accepted, else it will set the job to be failed
+          # If more than one value is needed, you can use comma(,) as seperator
+          # In this case if the response status code is not one of 200, 201 and 204, the job will be failed
+          # Default is 200,201,204
+          accept: 200,201,204
+
+          # Headers can be passed through json object string 
+          # support escape string, use <<<${{env.TEST}}>>>
+          headers: '{ "Content-Type": "application/json" }'
+          
+          # Body request
+          # Apply only to POST|PUT request
+          # support escape string, use <<<${{env.TEST}}>>>
+          data: '{ "source": "Fedilab",  "title": "${{on.rss.outputs.title}}",  "htmlstatus": "${{on.rss.outputs.contentSnippet}}<br>${{on.rss.outputs.link}}" }'
+          params: '{ "source": "Fedilab",  "title": "${{on.rss.outputs.title}}",  "htmlstatus": "${{on.rss.outputs.contentSnippet}}<br>${{on.rss.outputs.link}}" }'
+
+          # Request timeout (millisec)
+          # default is `0` (no timeout)
+          timeout: 10000
+
+          # Basic authentication using username and password
+          # This will override the Authorization header, for example Authorization: Basic QWxhZGRpbjpPcGVuU2VzYW1l
+          # Format => username:password
+          basic-auth: ${{ secrets.friendica_auth_username }}:${{ secrets.friendica_auth_password }}
+
+          # If it is set to true, it will show the response log in the Github UI
+          # Default: false
+          is_debug: true
+
+      - run: echo ${{ steps.api.outputs.status }}
+      - run: echo ${{ steps.api.outputs.data }}
+      - run: echo ${{ steps.api.outputs.headers }}
+  print:
+    name: Print
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Outputs
+        env:
+          title: ${{on.rss.outputs.title}}
+          contentSnippet: ${{on.rss.outputs.contentSnippet}}
+          link: ${{on.rss.outputs.link}}
+        run: |
+          echo title: $title
+          echo contentSnippet: $contentSnippet
+          echo link: $link
