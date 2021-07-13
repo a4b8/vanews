@@ -1,0 +1,30 @@
+on:
+  rss:
+    url: http://evangelizo.org/rss/v2/evangelizo_rss-de.xml
+    config:
+      every: "0 8 * * *"
+      filter:
+        content:
+          $regex: ....+
+        title:
+          $regex: (Evangelium|Psalm)
+jobs:
+  evangelium2friendica:
+    name: 'Post Evangelium to Friendica'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Call friendica API'
+        uses: actionsflow/axios@v1
+        with:
+          url: https://libranet.de/api/statuses/update.json
+          method: 'POST'
+          accept: 200,201,204
+          headers: '{ "Content-Type": "application/json" }'
+          data: '{ "source": "ETfT",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<b><<<${{on.rss.outputs.title}}>>></b>:<b><br></b><<<${{on.rss.outputs.content}}>>><b><br></b><i><a href=\"${{on.rss.outputs.link}}\"><<<${{on.rss.outputs.link}}>>></a></i>" }'
+          params: '{ "source": "ETfT",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<b><<<${{on.rss.outputs.title}}>>></b>:<b><br></b><<<${{on.rss.outputs.content}}>>><b><br></b><i><a href=\"${{on.rss.outputs.link}}\"><<<${{on.rss.outputs.link}}>>></a></i>" }'
+          timeout: 10000
+          basic-auth: ${{ secrets.friendica_auth_username }}:${{ secrets.friendica_auth_password }}
+          is_debug: true
+      - run: echo ${{ steps.api.outputs.status }}
+      - run: echo ${{ steps.api.outputs.data }}
+      - run: echo ${{ steps.api.outputs.headers }}
