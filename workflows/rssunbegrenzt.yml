@@ -23,3 +23,22 @@ jobs:
           consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
           access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
           access-token-secret: ${{ secrets.TWITTER_ACCESS_SECRET }}
+  katholischlogisch2friendica:
+    name: 'Post katholischlogisch to Friendica'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Call friendica API'
+        uses: actionsflow/axios@v1
+        with:
+          url: https://libranet.de/api/statuses/update.json
+          method: 'POST'
+          accept: 200,201,204
+          headers: '{ "Content-Type": "application/json" }'
+          data: '{ "source": "Fedilab",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<<<${{on.rss.outputs.contentSnippet}}>>><br><<<${{on.rss.outputs.link}}>>>" }'
+          params: '{ "source": "Fedilab",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<<<${{on.rss.outputs.contentSnippet}}>>><br><<<${{on.rss.outputs.link}}>>>" }'
+          timeout: 10000
+          basic-auth: ${{ secrets.friendica_auth_username }}:${{ secrets.friendica_auth_password }}
+          is_debug: true
+      - run: echo ${{ steps.api.outputs.status }}
+      - run: echo ${{ steps.api.outputs.data }}
+      - run: echo ${{ steps.api.outputs.headers }}
