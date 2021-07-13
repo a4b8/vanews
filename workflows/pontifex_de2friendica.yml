@@ -21,7 +21,7 @@ jobs:
           access-token: ${{ secrets.MASTODON_ACCESS_TOKEN }}
           message: "Franziskus I: ${{ on.twitter.outputs.full_text }}"
           host: "muenchen.social" # If not using default "mastodon.social"
-  pontofexde2friendica:
+  pontifexde2friendica:
     name: 'Post pontifex_de to Friendica'
     runs-on: ubuntu-latest
     steps:
@@ -32,8 +32,8 @@ jobs:
           method: 'POST'
           accept: 200,201,204
           headers: '{ "Content-Type": "application/json" }'
-          data: '{ "source": "Fedilab",  "title": "Papst Franziskus I.",  "htmlstatus": "Franziskus I: <<<${{ on.twitter.outputs.full_text }}>>>" }'
-          params: '{ "source": "Fedilab",  "title": "Papst Franziskus I.",  "htmlstatus": "Franziskus I: <<<${{ on.twitter.outputs.full_text }}>>>" }'
+          data: '{ "source": "Twitter",  "title": "Papst Franziskus I.",  "htmlstatus": "Franziskus I: <<<${{ on.twitter.outputs.full_text }}>>>" }'
+          params: '{ "source": "Twitter",  "title": "Papst Franziskus I.",  "htmlstatus": "Franziskus I: <<<${{ on.twitter.outputs.full_text }}>>>" }'
           timeout: 10000
           basic-auth: ${{ secrets.friendica_auth_username }}:${{ secrets.friendica_auth_password }}
           is_debug: true
