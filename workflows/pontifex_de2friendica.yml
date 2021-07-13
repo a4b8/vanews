@@ -1,0 +1,42 @@
+on:
+  twitter:
+    api: statuses/user_timeline
+    auth:
+      consumer_key: ${{ secrets.TWITTER_CONSUMER_KEY }}
+      consumer_secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+      access_token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+      access_token_secret: ${{ secrets.TWITTER_ACCESS_SECRET }}
+    params:
+      screen_name: Pontifex_de
+      exclude_replies: true,
+      include_rts: false,
+jobs:
+  fediverse-mastodon:
+    name: send2mastodon
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Call fediverse'
+        uses: rzr/fediverse-action@master
+        with:
+          access-token: ${{ secrets.MASTODON_ACCESS_TOKEN }}
+          message: "Franziskus I: ${{ on.twitter.outputs.full_text }}"
+          host: "muenchen.social" # If not using default "mastodon.social"
+  pontofexde2friendica:
+    name: 'Post pontifex_de to Friendica'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Call friendica API'
+        uses: actionsflow/axios@v1
+        with:
+          url: https://libranet.de/api/statuses/update.json
+          method: 'POST'
+          accept: 200,201,204
+          headers: '{ "Content-Type": "application/json" }'
+          data: '{ "source": "Fedilab",  "title": "Papst Franziskus I.",  "htmlstatus": "Franziskus I: <<<${{ on.twitter.outputs.full_text }}>>>" }'
+          params: '{ "source": "Fedilab",  "title": "Papst Franziskus I.",  "htmlstatus": "Franziskus I: <<<${{ on.twitter.outputs.full_text }}>>>" }'
+          timeout: 10000
+          basic-auth: ${{ secrets.friendica_auth_username }}:${{ secrets.friendica_auth_password }}
+          is_debug: true
+      - run: echo ${{ steps.api.outputs.status }}
+      - run: echo ${{ steps.api.outputs.data }}
+      - run: echo ${{ steps.api.outputs.headers }}          
