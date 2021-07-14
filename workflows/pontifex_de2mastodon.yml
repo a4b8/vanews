@@ -20,6 +20,6 @@ jobs:
       - name: 'Call fediverse'
         uses: rzr/fediverse-action@master
         with:
-          access-token: ${{ secrets.MASTODON_ACCESS_TOKEN }}
-          message: "Franziskus I: ${{ on.twitter.outputs.full_text }}<p><b><br><\/b><\/p><p><i><a href=\"https:\/\/twitter.com\/${{ on.twitter.outputs.user.screen_name }}\/status\/${{ on.twitter.outputs.id_str }}\">https:\/\/twitter.com\/${{ on.twitter.outputs.screen_name }}\/status\/${{ on.twitter.outputs.id_str }}</a></i><\/p>"
+          access-token: ${{ secrets.MASTODON_ACCESS_TOKEN_PPDE }}
+          message: "Franziskus I: ${{ on.twitter.outputs.full_text }}  https:\/\/twitter.com\/${{ on.twitter.outputs.user.screen_name }}\/status\/${{ on.twitter.outputs.id_str }}"
           host: "muenchen.social" # If not using default "mastodon.social"
