@@ -2,7 +2,7 @@ on:
   rss:
     url: https://www.vaticannews.va/de.rss.xml
     config:
-      every: "0 * * * *"
+      every: "0 */4 * * *"
       limit: 1
 jobs:
   post-vanews2friendica:
