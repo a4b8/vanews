@@ -1,0 +1,30 @@
+on:
+  twitter:
+    api: statuses/user_timeline
+    auth:
+      consumer_key: ${{ secrets.TWITTER_CONSUMER_KEY }}
+      consumer_secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+      access_token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+      access_token_secret: ${{ secrets.TWITTER_ACCESS_SECRET }}
+    params:
+      screen_name: sundaysforlife
+      exclude_replies: true
+      include_rts: true
+    config:
+      active: true
+      filter:
+        full_text:
+          $regex: ....+
+        created_at:
+          $regex: ....+
+jobs:
+  fediverse-mastodon:
+    name: send2mastodon
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Call fediverse'
+        uses: rzr/fediverse-action@master
+        with:
+          access-token: ${{ secrets.MASTODON_ACCESS_TOKEN }}
+          message: "<p><b><<<${{ on.twitter.outputs.user.name }}>>>:<\/b><\/p> <b><br><br><\/b><p><<<${{ on.twitter.outputs.full_text }}>>><\/p><b><br><\/b><p><i><a href=\"https:\/\/twitter.com\/${{ on.twitter.outputs.user.screen_name }}\/status\/${{ on.twitter.outputs.id }}\">https:\/\/twitter.com\/${{ on.twitter.outputs.screen_name }}\/status\/${{ on.twitter.outputs.id }}</a></i><\/p>"
+          host: "muenchen.social" # If not using default "mastodon.social"
