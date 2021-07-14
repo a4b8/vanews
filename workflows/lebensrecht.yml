@@ -1,14 +1,16 @@
 on:
   rss:
     url:
-      - https://www.alfa-ev.de/feed/
-      - https://www.bundesverband-lebensrecht.de/feed/
-      - https://righttolife.org.uk/feed
+#      - https://www.alfa-ev.de/feed/
+#      - https://www.bundesverband-lebensrecht.de/feed/
+#      - https://righttolife.org.uk/feed
       - https://kaleb.de/feed/
       - https://blog.secularprolife.org/feeds/posts/default?alt=rss
+    config:
+      limit: 1
 jobs:
-  fediverse-mastodon:
-    name: send2mastodon
+  lfa-fediverse-mastodon:
+    name: send-lfa2mastodon
     runs-on: ubuntu-latest
     steps:
       - name: 'Call fediverse'
@@ -17,7 +19,7 @@ jobs:
           access-token: ${{ secrets.MASTODON_ACCESS_TOKEN_LFA }}
           message: "${{on.rss.outputs.title}}  ${{on.rss.outputs.link}}"
           host: "muenchen.social" # If not using default "mastodon.social"
-  tweet:
+  lfa-tweet:
     runs-on: ubuntu-latest
     steps:
       - uses: ethomson/send-tweet-action@v1
@@ -27,8 +29,8 @@ jobs:
           consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
           access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
           access-token-secret: ${{ secrets.TWITTER_ACCESS_SECRET }}
-  email:
-    name: Post a email
+  lfa-email:
+    name: Post LfA by email
     runs-on: ubuntu-latest
     steps:
       - name: Send mail
