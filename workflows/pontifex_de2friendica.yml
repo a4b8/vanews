@@ -20,7 +20,7 @@ jobs:
         with:
           url: https://libranet.de/api/statuses/update.json
           method: 'POST'
-          accept: 200,201,204
+          accept: 200,201,204,429
           headers: '{ "Content-Type": "application/json" }'
           data: '{ "source": "Twitter",  "title": "Papst Franziskus I.",  "htmlstatus": "Franziskus I: <<<${{ on.twitter.outputs.full_text }}>>><b><br><\/b><p><i><a href=\"https:\/\/twitter.com\/${{ on.twitter.outputs.user.screen_name }}\/status\/${{ on.twitter.outputs.id_str }}\">https:\/\/twitter.com\/${{ on.twitter.outputs.screen_name }}\/status\/${{ on.twitter.outputs.id_str }}</a></i><\/p>" }'
           params: '{ "source": "Twitter",  "title": "Papst Franziskus I.",  "htmlstatus": "Franziskus I: <<<${{ on.twitter.outputs.full_text }}>>><b><br><\/b><p><i><a href=\"https:\/\/twitter.com\/${{ on.twitter.outputs.user.screen_name }}\/status\/${{ on.twitter.outputs.id_str }}\">https:\/\/twitter.com\/${{ on.twitter.outputs.screen_name }}\/status\/${{ on.twitter.outputs.id_str }}</a></i><\/p>" }'
