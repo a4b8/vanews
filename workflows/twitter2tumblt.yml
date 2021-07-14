@@ -18,7 +18,7 @@ on:
         created_at:
           $regex: ....+
       format: |
-        item.full_text = item.full_text.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&auml;/g, 'ä').replace(/&ouml;/g, 'ö').replace(/&uuml;/g, 'ü').replace(/&szlig;/g, 'ß').replace(/&bdquo;/g, '„').replace(/&ldquo;/g, '“').replace(/&nbsp;/g, ' ')
+        item.full_text = item.full_text.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&auml;/g, 'ä').replace(/&ouml;/g, 'ö').replace(/&uuml;/g, 'ü').replace(/&szlig;/g, 'ß').replace(/&bdquo;/g, '„').replace(/&ldquo;/g, '“').replace(/&nbsp;/g, ' ').replace(/&ndash;/g, '-')
         return item;
 jobs:
   post2tumblr:
