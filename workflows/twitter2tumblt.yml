@@ -17,6 +17,9 @@ on:
           $regex: ....+
         created_at:
           $regex: ....+
+      format: |
+        item.full_text = item.full_text.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&auml;/g, 'ä').replace(/&ouml;/g, 'ö').replace(/&uuml;/g, 'ü').replace(/&szlig;/g, 'ß').replace(/&bdquo;/g, '„').replace(/&ldquo;/g, '“').replace(/&nbsp;/g, ' ')
+        return item;
 jobs:
   post2tumblr:
     name: Request
@@ -29,7 +32,7 @@ jobs:
           method: POST
           body: |
             {
-              "value1": "${{ on.twitter.outputs.full_text }}",
-              "value2": "${{ on.twitter.outputs.created_at }}",
+              "value1": "<b><<<${{ on.twitter.outputs.user.screen_name }}>>>:</b> <b><br><br></b><p><<<${{ on.twitter.outputs.full_text }}>>><\/p><b><br><\/b>",
+              "value2": "<p><i><a href=\"https:\/\/twitter.com\/${{ on.twitter.outputs.user.screen_name }}\/status\/${{ on.twitter.outputs.id_str }}\">https:\/\/twitter.com\/${{ on.twitter.outputs.screen_name }}\/status\/${{ on.twitter.outputs.id_str }}</a></i><\/p><br><p>${{ on.twitter.outputs.created_at }}<\/p>",
               "value3": "twitter"
             }
