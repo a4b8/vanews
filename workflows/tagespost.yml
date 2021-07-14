@@ -55,7 +55,7 @@ jobs:
         with:
           url: https://libranet.de/api/statuses/update.json
           method: 'POST'
-          accept: 200,201,204
+          accept: 200,201,204,429
           headers: '{ "Content-Type": "application/json" }'
           data: '{ "source": "Fedilab",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<<<${{on.rss.outputs.contentSnippet}}>>><br><<<${{on.rss.outputs.link}}>>>" }'
           params: '{ "source": "Fedilab",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<<<${{on.rss.outputs.contentSnippet}}>>><br><<<${{on.rss.outputs.link}}>>>" }'
