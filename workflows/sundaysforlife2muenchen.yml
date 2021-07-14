@@ -26,5 +26,5 @@ jobs:
         uses: rzr/fediverse-action@master
         with:
           access-token: ${{ secrets.MASTODON_ACCESS_TOKEN }}
-          message: "<p><b><<<${{ on.twitter.outputs.user.name }}>>>: <\/b><br> <b><br><br><\/b><p><<<${{ on.twitter.outputs.full_text }}>>><br><b><br><\/b><p><i><a href=\"https:\/\/twitter.com\/${{ on.twitter.outputs.user.screen_name }}\/status\/${{ on.twitter.outputs.id_str }}\"\>https:\/\/twitter.com\/${{ on.twitter.outputs.screen_name }}\/status\/${{ on.twitter.outputs.id_str }}<\/a><\/i><br>"
+          message: "<p><b><<<${{ on.twitter.outputs.user.name }}>>>: <\/b><br> <b><br><br><\/b><p><<<${{ on.twitter.outputs.full_text }}>>><br><b><br><\/b><p><i><a href=\"https:\/\/twitter.com\/${{ on.twitter.outputs.user.screen_name }}\/status\/${{ on.twitter.outputs.id_str }}\">https:\/\/twitter.com\/${{ on.twitter.outputs.screen_name }}\/status\/${{ on.twitter.outputs.id_str }}<\/a><\/i><br>"
           host: "muenchen.social" # If not using default "mastodon.social"
