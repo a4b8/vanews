@@ -5,6 +5,7 @@ on:
       - https://www.bundesverband-lebensrecht.de/feed/
       - https://righttolife.org.uk/feed
       - https://kaleb.de/feed/
+      - https://blog.secularprolife.org/feeds/posts/default?alt=rss
 jobs:
   fediverse-mastodon:
     name: send2mastodon
