@@ -19,7 +19,7 @@ jobs:
         with:
           url: https://libranet.de/api/statuses/update.json
           method: 'POST'
-          accept: 200,201,204
+          accept: 200,201,204,429
           headers: '{ "Content-Type": "application/json" }'
           data: '{ "source": "ETfT",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<b><<<${{on.rss.outputs.title}}>>></b>:<b><br></b><<<${{on.rss.outputs.content}}>>><b><br></b><i><a href=\"${{on.rss.outputs.link}}\"><<<${{on.rss.outputs.link}}>>></a></i>" }'
           params: '{ "source": "ETfT",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<b><<<${{on.rss.outputs.title}}>>></b>:<b><br></b><<<${{on.rss.outputs.content}}>>><b><br></b><i><a href=\"${{on.rss.outputs.link}}\"><<<${{on.rss.outputs.link}}>>></a></i>" }'
