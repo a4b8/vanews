@@ -20,8 +20,8 @@ on:
         created_at:
           $regex: ....+
 jobs:
-  sundaysforlife2friendica:
-    name: 'Post sundaysforlife to Friendica'
+  cna2friendica:
+    name: 'Post CNA to Friendica'
     runs-on: ubuntu-latest
     steps:
       - name: 'Call friendica API'
