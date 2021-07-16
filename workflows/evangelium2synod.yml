@@ -7,7 +7,7 @@ on:
         content:
           $regex: ....+
         title:
-          $regex: (Evangelium|Psalm)
+          $regex: Evangelium
 jobs:
   send2matrix:
    runs-on: ubuntu-latest
