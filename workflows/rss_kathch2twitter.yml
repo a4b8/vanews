@@ -1,0 +1,25 @@
+on:
+  rss:
+    url: https://www.kath.ch/feed/
+    config:
+      every: "0 */6 * * *"
+      limit: 1
+      active: true
+      filter:
+        content:
+          $regex: ....+
+        title:
+          $regex: ....+
+        link:
+          $regex: ....+
+jobs:
+  tweet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ethomson/send-tweet-action@v1
+        with:
+          status: ${{on.rss.outputs.title}} ${{on.rss.outputs.link}}
+          consumer-key: ${{ secrets.TWITTER_CONSUMER_KEY }}
+          consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+          access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          access-token-secret: ${{ secrets.TWITTER_ACCESS_SECRET }}
