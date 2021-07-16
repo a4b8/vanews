@@ -4,7 +4,8 @@ on:
     config:
       every: "0 */5 * * *"
       limit: 1
-      active: true
+      active: false
+# inactive, due to active in lebensrecht.yml
       filter:
         content:
           $regex: ....+
