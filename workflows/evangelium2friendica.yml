@@ -7,7 +7,7 @@ on:
         content:
           $regex: ....+
         title:
-          $regex: (Evangelium|Psalm)
+          $regex: Evangelium
 jobs:
   evangelium2friendica:
     name: 'Post Evangelium to Friendica'
