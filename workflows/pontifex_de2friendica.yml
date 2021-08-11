@@ -2,7 +2,7 @@ on:
   twitter:
     api: statuses/user_timeline
     config:
-      active: false
+      active: true
     auth:
       consumer_key: ${{ secrets.TWITTER_CONSUMER_KEY }}
       consumer_secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
