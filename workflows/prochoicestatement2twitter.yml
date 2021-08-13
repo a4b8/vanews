@@ -1,6 +1,6 @@
 on:
   rss:
-    url: https://muenchen.digital/xml/blogfeed.xml
+    url: https://hnrss.org/newest
     config:
       limit: 1
       active: true
@@ -42,9 +42,10 @@ jobs:
       - uses: ethomson/send-tweet-action@v1
         with:
           status: |
-              "Auch heute am ${{steps.translate.outputs.wotag}} ist
-              #prochoice #Ableismus und #Misogynie <br>
-              #prochoice is #misogyny and #ableism"
+              Auch heute am ${{steps.translate.outputs.wotag}} ist
+              #prochoice #Ableismus und #Misogynie
+              --
+              #prochoice is #misogyny and #ableism
           consumer-key: ${{ secrets.TWITTER_CONSUMER_KEY }}
           consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
           access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
