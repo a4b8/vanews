@@ -1,6 +1,6 @@
 on:
   rss:
-    url: http://feeds.feedburner.com/kathnews-redaktion
+    url: https://muenchen.digital/xml/blogfeed.xml
     config:
       limit: 1
       active: true
