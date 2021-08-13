@@ -39,7 +39,7 @@ jobs:
           else
             echo "::set-output name=wotag::Arbeitstag"
           fi
-	  - uses: ethomson/send-tweet-action@v1
+      - uses: ethomson/send-tweet-action@v1
         with:
           status: Auch heute am ${{steps.translate.outputs.wotag}} ist #prochoice #Ableismus und #Misogynie <br> #prochoice is #misogyny and #ableism
           consumer-key: ${{ secrets.TWITTER_CONSUMER_KEY }}
