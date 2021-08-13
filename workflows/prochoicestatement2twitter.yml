@@ -1,0 +1,48 @@
+on:
+  rss:
+    url: http://feeds.feedburner.com/kathnews-redaktion
+    config:
+      limit: 1
+      active: true
+#	  every: "30 5 * * *"
+jobs:
+  tweet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=wotag::$(date +'%A')"
+      - name: Translate current date
+        id: translate
+        run: |
+          if [ "${{steps.date.outputs.wotag}}" = "Monday" ]
+          then
+            echo "::set-output name=wotag::Montag"
+          elif [ "${{steps.date.outputs.wotag}}" = "Tuesday" ]
+          then
+            echo "::set-output name=wotag::Dienstag"
+          elif [ "${{steps.date.outputs.wotag}}" = "Wednesday" ]
+          then
+            echo "::set-output name=wotag::Mittwoch"
+          elif [ "${{steps.date.outputs.wotag}}" = "Thursday" ]
+          then
+            echo "::set-output name=wotag::Donnerstag"
+          elif [ "${{steps.date.outputs.wotag}}" = "Friday" ]
+          then
+            echo "::set-output name=wotag::Freitag"
+          elif [ "${{steps.date.outputs.wotag}}" = "Saturday" ]
+          then
+            echo "::set-output name=wotag::Samstag"
+          elif [ "${{steps.date.outputs.wotag}}" = "Sunday" ]
+          then
+            echo "::set-output name=wotag::Sonntag"
+          else
+            echo "::set-output name=wotag::Arbeitstag"
+          fi
+	  - uses: ethomson/send-tweet-action@v1
+        with:
+          status: Auch heute am ${{steps.translate.outputs.wotag}} ist #prochoice #Ableismus und #Misogynie <br> #prochoice is #misogyny and #ableism
+          consumer-key: ${{ secrets.TWITTER_CONSUMER_KEY }}
+          consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+          access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          access-token-secret: ${{ secrets.TWITTER_ACCESS_SECRET }}
