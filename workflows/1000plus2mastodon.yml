@@ -1,0 +1,16 @@
+on:
+  rss:
+    url: http://www.1000plus.net/rss.xml
+    config:
+      active: true
+jobs:
+  fediverse-mastodon:
+    name: 1000plus2mastodon
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Call fediverse'
+        uses: rzr/fediverse-action@master
+        with:
+          access-token: ${{ secrets.MASTODON_ACCESS_TOKEN }}
+          message: "${{on.rss.outputs.title}}  ${{on.rss.outputs.link}}"
+          host: "muenchen.social"
