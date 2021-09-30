@@ -4,7 +4,7 @@ on:
     config:
       active: true
 jobs:
-  1000plus2friendica:
+  post1000plus2friendica:
     name: 'Post 1000plus to Friendica'
     runs-on: ubuntu-latest
     steps:
