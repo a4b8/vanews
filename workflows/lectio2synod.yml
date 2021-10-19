@@ -19,10 +19,10 @@ jobs:
          room_id: ${{ secrets.MATRIX_ROOM_ID }}
          access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
          message: |
-              "${{on.rss.outputs.title}}:
+              ${{on.rss.outputs.title}}:
               
               ${{on.rss.outputs.content}}
               
               ${{on.rss.outputs.link}}
-              "
+              
          server: "synod.im"
