@@ -1,7 +1,7 @@
 on:
   rss:
     url:
-      - https://www.vaticannews.va/de.rss.xml
+#      - https://www.vaticannews.va/de.rss.xml # wird ungünstig formatiert, deswegen auskommentiert.
       - https://www.katholisch.de/aktuelles/aktuelle-artikel.rss
       - https://www.kath.net/ticker/index.xml
       - http://feeds.feedburner.com/kathnews-redaktion
