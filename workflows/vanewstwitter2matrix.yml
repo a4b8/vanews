@@ -8,9 +8,9 @@ on:
       access_token_secret: ${{ secrets.TWITTER_ACCESS_SECRET }}
     params:
       screen_name: vaticannews_de
-      exclude_replies: true,
-      include_rts: true,
-      tweet_mode: "extended",
+      exclude_replies: true
+      include_rts: true
+      tweet_mode: "extended"
     config:
       active: true
       filter:
