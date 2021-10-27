@@ -9,7 +9,7 @@ on:
     params:
       screen_name: vaticannews_de
       exclude_replies: true
-      include_rts: true
+      include_rts: false
       tweet_mode: "extended"
     config:
       active: true
@@ -19,7 +19,7 @@ on:
         created_at:
           $regex: ....+
       format: |
-        item.full_text = item.full_text.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&auml;/g, 'ä').replace(/&ouml;/g, 'ö').replace(/&uuml;/g, 'ü').replace(/&szlig;/g, 'ß').replace(/&bdquo;/g, '„').replace(/&ldquo;/g, '“').replace(/&nbsp;/g, ' ').replace(/&ndash;/g, '-')
+        item.full_text = item.full_text.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&auml;/g, 'ä').replace(/&ouml;/g, 'ö').replace(/&uuml;/g, 'ü').replace(/&szlig;/g, 'ß').replace(/&bdquo;/g, '„').replace(/&ldquo;/g, '“').replace(/&nbsp;/g, ' ').replace(/&ndash;/g, '-').replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, '')
         return item;
 jobs:
   send2matrix:
@@ -30,5 +30,9 @@ jobs:
          with:
            room_id: ${{ secrets.MATRIX_NEWSROOM_ID }}
            access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
-           message: ${{ on.twitter.outputs.full_text }} ${{ on.twitter.outputs.entities.0.urls }}
+           message: |
+             ${{ on.twitter.outputs.full_text }}
+             
+             ${{ on.twitter.outputs.entities.0.urls }}
+             
            server: "synod.im"
