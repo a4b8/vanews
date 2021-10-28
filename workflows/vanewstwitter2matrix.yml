@@ -12,7 +12,7 @@ on:
       include_rts: false
       tweet_mode: "extended"
     config:
-      active: true
+      active: false
       filter:
         full_text:
           $regex: ....+
