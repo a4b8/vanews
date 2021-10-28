@@ -24,7 +24,7 @@ jobs:
            access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
            message: |
              <p><br>
-#             ${{on.rss.outputs.title}}
+             <p>${{on.rss.outputs.title}}</p>
              <p>${{on.rss.outputs.content}}</p>
              
              <a href="${{on.rss.outputs.link}}">${{on.rss.outputs.link}}</a>
