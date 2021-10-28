@@ -1,14 +1,17 @@
 on:
   rss:
     url:
-#      - https://www.vaticannews.va/de.rss.xml # wird ungünstig formatiert, deswegen auskommentiert.
+      - https://www.vaticannews.va/de.rss.xml # wird ungünstig formatiert, deswegen auskommentiert.
       - https://www.katholisch.de/aktuelles/aktuelle-artikel.rss
       - https://www.kath.net/ticker/index.xml
       - http://feeds.feedburner.com/kathnews-redaktion
       - https://www.kath.ch/feed/
       - https://www.blogs-kath.ch/feed/
       - https://righttolife.org.uk/feed
-#    config:
+    config:
+      format: |
+        item.content = item.content.replace(/<style([\s\S]*?)<\/style>/gi, '').replace(/<script([\s\S]*?)<\/script>/gi, '').replace(/<\/div>/ig, '').replace(/<\/li>/ig, '').replace(/<li>/ig, '').replace(/<\/ul>/ig, '').replace(/<\/p>/ig, '').replace(/<br\s*[\/]?>/gi, '').replace(/<[^>]+>/ig, '').replace(/<\/*code>/ig, '').replace(/<\/*textarea.*>/ig, '').replace(/<\/*samp.*>/ig, '').replace(/<\/*pre.*>/ig, '')
+        return item;
 #      limit: 999
 jobs:
   send2matrix:
