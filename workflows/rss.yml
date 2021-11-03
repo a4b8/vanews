@@ -1,7 +1,7 @@
 on:
   rss:
     url:
-      - https://www.vaticannews.va/de.rss.xml # wird ungünstig formatiert, deswegen auskommentiert.
+      - https://www.vaticannews.va/de.rss.xml
       - https://www.katholisch.de/aktuelles/aktuelle-artikel.rss
       - https://www.kath.net/ticker/index.xml
       - http://feeds.feedburner.com/kathnews-redaktion
@@ -10,8 +10,6 @@ on:
       - https://righttolife.org.uk/feed
       - https://www.alfa-ev.de/feed/
       - https://www.bundesverband-lebensrecht.de/feed/
-      - https://kaleb.de/feed/
-      - https://blog.secularprolife.org/feeds/posts/default?alt=rss
     config:
       format: |
         item.content = item.content.replace(/<style([\s\S]*?)<\/style>/gi, '').replace(/<script([\s\S]*?)<\/script>/gi, '').replace(/<\/div>/ig, '').replace(/<\/li>/ig, '').replace(/<li>/ig, '').replace(/<\/ul>/ig, '').replace(/<\/p>/ig, '').replace(/<br\s*[\/]?>/gi, '').replace(/<[^>]+>/ig, '').replace(/<\/*code>/ig, '').replace(/<\/*textarea.*>/ig, '').replace(/<\/*samp.*>/ig, '').replace(/<\/*pre.*>/ig, '')
@@ -50,6 +48,6 @@ jobs:
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_NACHRICHTEN }}
           DISCORD_EMBEDS: {"embeds": [{"title": "${{on.rss.outputs.title}}", "url": "${{on.rss.outputs.link}}", "description": "${{on.rss.outputs.content}}"}]}
-        uses: Ilshidur/action-discord@master@0c4b278
+        uses: Ilshidur/action-discord@master
         with:
           args: '${{on.rss.outputs.content}}'
