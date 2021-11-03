@@ -1,0 +1,21 @@
+on:
+  rss:
+    url: http://evangelizo.org/rss/v2/evangelizo_rss-de.xml
+    config:
+      every: "0 10 * * *"
+      filter:
+        content:
+          $regex: ....+
+        title:
+          $regex: Kommentar
+jobs:
+  kommentar2discord:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Discord notification
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_TAGESEVANGELIUM }}
+          DISCORD_EMBEDS: {"embeds": [{"title": "${{on.rss.outputs.title}}", "url": "${{on.rss.outputs.link}}", "description": "${{on.rss.outputs.content}}"}]}
+        uses: Ilshidur/action-discord@master@0c4b278
+        with:
+          args: '${{on.rss.outputs.content}}'
