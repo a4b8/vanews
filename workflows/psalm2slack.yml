@@ -1,0 +1,20 @@
+on:
+  rss:
+    url: http://evangelizo.org/rss/v2/evangelizo_rss-de.xml
+    config:
+      every: "0 8 * * *"
+      filter:
+        content:
+          $regex: ....+
+        title:
+          $regex: Psalm
+jobs:
+  psalm2slack:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify slack
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        uses: pullreminders/slack-action@master
+        with:
+          args: '{\"channel\":\"C02KYC1L5GD\", \"blocks\": [{\"type\": \"section\",\"text\": {\"type\": \"mrkdwn\",\"text\": \"*${{on.rss.outputs.title}}*\n${{on.rss.outputs.content}}\n<${{on.rss.outputs.link}}>\"}}]}'
