@@ -18,4 +18,4 @@ jobs:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         uses: pullreminders/slack-action@master
         with:
-          args: '{\"channel\":\"C02KYC1L5GD\", \"blocks\": [{\"type\": \"section\",\"text\": {\"type\": \"mrkdwn\",\"text\": \"*${{on.rss.outputs.title}}*\n${{on.rss.outputs.content}}\n<${{on.rss.outputs.link}}>\"}}]}'
+          args: '{\"channel\":\"C02KYC1L5GD\", \"blocks\": [{\"type\": \"section\",\"text\": {\"type\": \"mrkdwn\",\"text\": \"*${{on.rss.outputs.title}}*\\n${{on.rss.outputs.content}}\\n<${{on.rss.outputs.link}}>\"}}]}'
