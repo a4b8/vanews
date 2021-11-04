@@ -47,10 +47,34 @@ jobs:
   send2discord:
     runs-on: ubuntu-latest
     steps:
-      - name: Discord notification
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_NACHRICHTEN }}
-#          DISCORD_EMBEDS: {"embeds": [{"title": "${{on.rss.outputs.title}}", "url": "${{on.rss.outputs.link}}", "description": "${{on.rss.outputs.content}}"}]}
-        uses: Ilshidur/action-discord@master
+      - name: Titel posten
+        uses: actionsflow/axios@v1
+        id: api
         with:
-          args: '${{on.rss.outputs.content}}'
+          url: ${{ secrets.DISCORD_WEBHOOK_NACHRICHTEN }}
+          method: 'POST'
+          data: |
+            {
+              "username": "Lektor",
+              "avatar_url": "https://i.imgur.com/4ANMyvb.png",
+              "content": "${{on.rss.outputs.title}}"
+            }
+      - name: Text senden
+        uses: appleboy/discord-action@master
+        with:
+          webhook_id: ${{ secrets.DISCORD_NACHRICHTEN_WEBHOOK_ID }}
+          webhook_token: ${{ secrets.DISCORD_NACHRICHTEN_WEBHOOK_TOKEN }}
+          username: "Lektor"
+          message: ${{on.rss.outputs.content}}
+      - name: Link posten
+        uses: actionsflow/axios@v1
+        id: api
+        with:
+          url: ${{ secrets.DISCORD_WEBHOOK_NACHRICHTEN }}
+          method: 'POST'
+          data: |
+            {
+              "username": "Lektor",
+              "avatar_url": "https://i.imgur.com/4ANMyvb.png",
+              "content": "${{on.rss.outputs.link}}\n\n\n\n"
+            }
