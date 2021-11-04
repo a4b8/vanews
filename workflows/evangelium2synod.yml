@@ -2,6 +2,7 @@ on:
   rss:
     url: http://evangelizo.org/rss/v2/evangelizo_rss-de.xml
     config:
+      active: false
       every: "0 9 * * *"
       filter:
         content:
