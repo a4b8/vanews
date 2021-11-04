@@ -55,8 +55,8 @@ jobs:
           method: 'POST'
           data: |
             {
-              "username": "Lektor",
-              "avatar_url": "https://i.imgur.com/4ANMyvb.png",
+              "username": "Merkur",
+              "avatar_url": "https://i.imgur.com/OrFTYIg.jpeg",
               "content": "${{on.rss.outputs.title}}"
             }
       - name: Text senden
@@ -64,7 +64,7 @@ jobs:
         with:
           webhook_id: ${{ secrets.DISCORD_NACHRICHTEN_WEBHOOK_ID }}
           webhook_token: ${{ secrets.DISCORD_NACHRICHTEN_WEBHOOK_TOKEN }}
-          username: "Lektor"
+          username: "Merkur"
           message: ${{on.rss.outputs.content}}
       - name: Link posten
         uses: actionsflow/axios@v1
@@ -74,7 +74,7 @@ jobs:
           method: 'POST'
           data: |
             {
-              "username": "Lektor",
-              "avatar_url": "https://i.imgur.com/4ANMyvb.png",
+              "username": "Merkur",
+              "avatar_url": "https://i.imgur.com/OrFTYIg.jpeg",
               "content": "${{on.rss.outputs.link}}\n\n\n\n"
             }
