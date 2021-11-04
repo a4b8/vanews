@@ -16,6 +16,6 @@ jobs:
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_TAGESEVANGELIUM }}
           DISCORD_EMBEDS: {"embeds": [{"title": "${{on.rss.outputs.title}}", "url": "${{on.rss.outputs.link}}", "description": "${{on.rss.outputs.content}}"}]}
-        uses: Ilshidur/action-discord@master@0c4b278
+        uses: Ilshidur/action-discord@master
         with:
           args: '${{on.rss.outputs.content}}'
