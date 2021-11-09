@@ -47,7 +47,7 @@ jobs:
   send2discord:
     runs-on: ubuntu-latest
     steps:
-      - name: Titel posten
+      - name: an Discord posten
         uses: actionsflow/axios@v1
         id: api
         with:
@@ -57,24 +57,5 @@ jobs:
             {
               "username": "Merkur",
               "avatar_url": "https://i.imgur.com/OrFTYIg.jpeg",
-              "content": "${{on.rss.outputs.title}}"
-            }
-      - name: Text senden
-        uses: appleboy/discord-action@master
-        with:
-          webhook_id: ${{ secrets.DISCORD_NACHRICHTEN_WEBHOOK_ID }}
-          webhook_token: ${{ secrets.DISCORD_NACHRICHTEN_WEBHOOK_TOKEN }}
-          username: "Merkur"
-          message: ${{on.rss.outputs.content}}
-      - name: Link posten
-        uses: actionsflow/axios@v1
-        id: api
-        with:
-          url: ${{ secrets.DISCORD_WEBHOOK_NACHRICHTEN }}
-          method: 'POST'
-          data: |
-            {
-              "username": "Merkur",
-              "avatar_url": "https://i.imgur.com/OrFTYIg.jpeg",
-              "content": "${{on.rss.outputs.link}}\n\n\n\n"
+              "content": "---------------\n\n${{on.rss.outputs.title}}\n--\n${{on.rss.outputs.content}}\n--\n${{on.rss.outputs.link}}\n--\n\n---------------\n\n"
             }
