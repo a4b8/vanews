@@ -43,7 +43,7 @@ jobs:
            SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
          uses: pullreminders/slack-action@master
          with:
-           args: '{\"channel\":\"C02KL39HTE0\",\"text\":\"---------------\\n${{on.rss.outputs.title}}\\n${{on.rss.outputs.content}}\\n${{on.rss.outputs.link}}\\n---------------\\n\"}'
+           args: '{\"channel\":\"C02KL39HTE0\",\"text\":\"---------------\\n${{on.rss.outputs.title}}\\n${{on.rss.outputs.content}}\\n${{on.rss.outputs.link}}\\n\\n\"}'
   send2discord:
     runs-on: ubuntu-latest
     steps:
