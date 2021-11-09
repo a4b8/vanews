@@ -57,5 +57,5 @@ jobs:
             {
               "username": "Merkur",
               "avatar_url": "https://i.imgur.com/OrFTYIg.jpeg",
-              "content": "---------------\\n\\n${{on.rss.outputs.title}}\\n \\n${{on.rss.outputs.content}}\\n \\n${{on.rss.outputs.link}}\\n \\n \\n---------------\\n\\n"
+              "content": "${{on.rss.outputs.title}} ${{on.rss.outputs.content}} ${{on.rss.outputs.link}}  "
             }
