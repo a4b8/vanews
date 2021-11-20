@@ -10,6 +10,8 @@ on:
       - UCU_EPbrzgcNEn2cSzL_4BtQ
       - UCrI002TopZgQfykEGJYHweA
       - UCoRyVKrf8l9N-jZDXEyrZ_g
+    config:
+      active: false
 jobs:
   fediverse-mastodon:
     name: send2mastodon
