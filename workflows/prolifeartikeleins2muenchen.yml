@@ -9,12 +9,12 @@ jobs:
   tweet:
     runs-on: ubuntu-latest
     steps:
-	    - name: 'Call fediverse'
-		    uses: rzr/fediverse-action@master
-		    with:
-		      access-token: ${{ secrets.MASTODON_ACCESS_TOKEN_PROCHOICE }}
-		      message: |
-              Die Würde des Menschen... (Art. 1 GG)
-              Zugehörigkeit zur Spezies Mensch ist unabhängig vom Alter.
-              Was diskutiert Ihr noch? #prochoice #wegmit218 #wegmit219a
-		      host: "muenchen.social"
+    - name: 'Call fediverse'
+      uses: rzr/fediverse-action@master
+      with:
+        access-token: ${{ secrets.MASTODON_ACCESS_TOKEN_PROCHOICE }}
+        message: |
+            Die Würde des Menschen... (Art. 1 GG)
+            Zugehörigkeit zur Spezies Mensch ist unabhängig vom Alter.
+            Was diskutiert Ihr noch? #prochoice #wegmit218 #wegmit219a
+        host: "muenchen.social"
