@@ -23,21 +23,21 @@ jobs:
           echo "::set-output name=wotag::Dienstag"
         elif [ "${{steps.date.outputs.wotag}}" = "Wednesday" ]
         then
-        echo "::set-output name=wotag::Mittwoch"
+          echo "::set-output name=wotag::Mittwoch"
         elif [ "${{steps.date.outputs.wotag}}" = "Thursday" ]
         then
-        echo "::set-output name=wotag::Donnerstag"
+          echo "::set-output name=wotag::Donnerstag"
         elif [ "${{steps.date.outputs.wotag}}" = "Friday" ]
         then
-        echo "::set-output name=wotag::Freitag"
+          echo "::set-output name=wotag::Freitag"
         elif [ "${{steps.date.outputs.wotag}}" = "Saturday" ]
         then
-        echo "::set-output name=wotag::Samstag"
+          echo "::set-output name=wotag::Samstag"
         elif [ "${{steps.date.outputs.wotag}}" = "Sunday" ]
         then
-        echo "::set-output name=wotag::Sonntag"
+          echo "::set-output name=wotag::Sonntag"
         else
-        echo "::set-output name=wotag::Arbeitstag"
+          echo "::set-output name=wotag::Arbeitstag"
         fi
     - name: 'Call friendica API'
       uses: actionsflow/axios@v1
