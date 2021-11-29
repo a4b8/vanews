@@ -1,0 +1,21 @@
+on:
+  rss:
+    url: https://hnrss.org/newest
+    config:
+      limit: 1
+      active: true
+      every: "30 5 */5 * *"
+jobs:
+  tweet:
+    runs-on: ubuntu-latest
+    steps:
+    - name: 'Call fediverse'
+      uses: rzr/fediverse-action@master
+      with:
+        access-token: ${{ secrets.MASTODON_ACCESS_TOKEN_PROCHOICE }}
+        message: |
+            Der Begriff Schwangerschaftsabbruch ist irreführend.
+            Es ist ein Lebensabbruch.
+            So wie jede Tötung.
+            #prochoice #Abtreibung #wegmit218 #wegmit219a
+        host: "muenchen.social"
