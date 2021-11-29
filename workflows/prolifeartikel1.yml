@@ -1,0 +1,22 @@
+on:
+  rss:
+    url: https://hnrss.org/newest
+    config:
+      limit: 1
+      active: true
+      every: "0 8 */4 * *"
+jobs:
+  tweet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: statement2twitter
+        uses: ethomson/send-tweet-action@v1
+        with:
+          status: |
+              Die Würde des Menschen... (Art. 1 GG)
+              Zugehörigkeit zur Spezies Mensch ist unabhängig vom Alter.
+              Was diskutiert Ihr noch? #prochoice #wegmit218 #wegmit219a
+          consumer-key: ${{ secrets.TWITTER_CONSUMER_KEY }}
+          consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+          access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          access-token-secret: ${{ secrets.TWITTER_ACCESS_SECRET }}
