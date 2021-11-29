@@ -1,0 +1,23 @@
+on:
+  rss:
+    url: https://hnrss.org/newest
+    config:
+      limit: 1
+      active: true
+      every: "30 5 */5 * *"
+jobs:
+  friendica:
+    runs-on: ubuntu-latest
+    steps:
+    - name: 'Call friendica API'
+      uses: actionsflow/axios@v1
+      with:
+        url: https://libranet.de/api/statuses/update.json
+        method: 'POST'
+        accept: 200,201,204,429
+        headers: '{ "Content-Type": "application/json" }'
+        data: '{ "source": "Tusky",  "title": "Der Begriff Schwangerschaftsabbruch ist irreführend.",  "htmlstatus": "Es ist ein Lebensabbruch. So wie jede Tötung. #prochoice #Abtreibung #wegmit218 #wegmit219a" }'
+        params: '{ "source": "Tusky",  "title": "Der Begriff Schwangerschaftsabbruch ist irreführend.",  "htmlstatus": "Es ist ein Lebensabbruch. So wie jede Tötung. #prochoice #Abtreibung #wegmit218 #wegmit219a" }'
+        timeout: 10000
+        basic-auth: ${{ secrets.friendica_auth_username }}:${{ secrets.friendica_auth_password }}
+        is_debug: true
