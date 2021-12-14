@@ -46,8 +46,8 @@ jobs:
         method: 'POST'
         accept: 200,201,204,429
         headers: '{ "Content-Type": "application/json" }'
-        data: '{ "source": "Tusky",  "title": "Auch heute am <<<${{steps.translate.outputs.wotag}}>>> ist #prochoice #Ableismus und #Misogynie",  "htmlstatus": "#prochoice is #misogyny and #ableism" }'
-        params: '{ "source": "Tusky",  "title": "Auch heute am <<<${{steps.translate.outputs.wotag}}>>> ist #prochoice #Ableismus und #Misogynie",  "htmlstatus": "#prochoice is #misogyny and #ableism" }'
+        data: '{ "source": "Tusky",  "title": "Auch heute am <<<${{steps.translate.outputs.wotag}}>>>",  "htmlstatus": "werden wieder rund 275 Kinder in Deutschland getötet werden. 96% davon auf Wunsch der Eltern. #prochoice #Ableismus #Misogynie" }'
+        params: '{ "source": "Tusky",  "title": "Auch heute am <<<${{steps.translate.outputs.wotag}}>>>",  "htmlstatus": "werden wieder rund 275 Kinder in Deutschland getötet werden. 96% davon auf Wunsch der Eltern. #prochoice #Ableismus #Misogynie" }'
         timeout: 10000
         basic-auth: ${{ secrets.friendica_auth_username }}:${{ secrets.friendica_auth_password }}
         is_debug: true
