@@ -1,0 +1,21 @@
+on:
+  rss:
+    url: https://hnrss.org/newest
+    config:
+      limit: 1
+      active: true
+      every: "30 5 */2 * *"
+jobs:
+  tweet:
+    runs-on: ubuntu-latest
+    steps:
+    - name: 'Call fediverse'
+      uses: rzr/fediverse-action@master
+      with:
+        access-token: ${{ secrets.MASTODON_ACCESS_TOKEN_PROCHOICE }}
+        message: |
+            Auch heute am ${{steps.translate.outputs.wotag}} werden
+            wieder rund 275 Kinder in Deutschland getötet worden sein.
+            96% davon werden auf Wunsch ihrer Eltern getötet.
+            #prochoice #Ableismus #Misogynie
+        host: "muenchen.social"
