@@ -43,5 +43,5 @@ jobs:
       uses: rzr/fediverse-action@master
       with:
         access-token: ${{ secrets.MASTODON_ACCESS_TOKEN_PROCHOICE }}
-        message: Auch heute werden wieder rund 275 Kinder in Deutschland getötet worden sein. 96% davon werden auf Wunsch ihrer Eltern getötet. #prochoice #Ableismus #Misogynie
+        message: "Auch heute werden wieder rund 275 Kinder in Deutschland getötet worden sein. 96% davon werden auf Wunsch ihrer Eltern getötet. #prochoice #Ableismus #Misogynie"
         host: "muenchen.social"
