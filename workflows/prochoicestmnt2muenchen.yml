@@ -4,7 +4,7 @@ on:
     config:
       limit: 1
       active: true
-      every: "30 6 */4 * *"
+      every: "30 6 */4 * 1-5"
 jobs:
   toot:
     runs-on: ubuntu-latest
