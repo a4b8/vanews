@@ -4,7 +4,7 @@ on:
     config:
       limit: 1
       active: true
-#      every: "* */2 19 * *"
+      every: "* * * * *"
 jobs:
   toot:
     runs-on: ubuntu-latest
