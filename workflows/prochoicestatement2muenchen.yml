@@ -39,7 +39,7 @@ jobs:
         else
           echo "::set-output name=wotag::Arbeitstag"
         fi
-    - name: 'Call fediverse'
+    - name: Call muenchen.social
       uses: rzr/fediverse-action@master
       with:
         access-token: ${{ secrets.MASTODON_ACCESS_TOKEN_PROCHOICE }}
