@@ -44,8 +44,7 @@ jobs:
       with:
         access-token: ${{ secrets.MASTODON_ACCESS_TOKEN_PROCHOICE }}
         message: |
-            Auch heute am ${{steps.translate.outputs.wotag}} werden wieder rund
-            275 Kinder in Deutschland getötet worden sein.
+            Auch heute am ${{steps.translate.outputs.wotag}} werden wieder rund 275 Kinder in Deutschland getötet worden sein.
             264 Kinder auf Wunsch der Eltern.
             #prochoice #Ableismus #Misogynie
         host: "muenchen.social"
