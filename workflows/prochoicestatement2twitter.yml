@@ -42,8 +42,7 @@ jobs:
       - uses: ethomson/send-tweet-action@v1
         with:
           status: |
-              Auch heute am ${{steps.translate.outputs.wotag}} werden
-              wieder rund 275 Kinder in Deutschland getötet.
+              Auch heute am ${{steps.translate.outputs.wotag}} werden in Deutschland wieder rund 275 Kinder getötet.
               #prochoice #Ableismus #Misogynie
           consumer-key: ${{ secrets.TWITTER_CONSUMER_KEY }}
           consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
