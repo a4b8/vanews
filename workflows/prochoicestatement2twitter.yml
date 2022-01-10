@@ -39,7 +39,7 @@ jobs:
           else
             echo "::set-output name=wotag::Arbeitstag"
           fi
-      - if steps.translate.outputs.wotag != 'Samstag' && steps.translate.outputs.wotag != 'Sonntag'
+      - if: steps.translate.outputs.wotag != 'Samstag' && steps.translate.outputs.wotag != 'Sonntag'
         uses: ethomson/send-tweet-action@v1
         with:
           status: |
@@ -49,7 +49,7 @@ jobs:
           consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
           access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
           access-token-secret: ${{ secrets.TWITTER_ACCESS_SECRET }}
-      - if steps.translate.outputs.wotag == 'Samstag'
+      - if: steps.translate.outputs.wotag == 'Samstag'
         uses: ethomson/send-tweet-action@v1
         with:
           status: |
@@ -59,7 +59,7 @@ jobs:
           consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
           access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
           access-token-secret: ${{ secrets.TWITTER_ACCESS_SECRET }}
-      - if steps.translate.outputs.wotag == 'Sonntag'
+      - if: steps.translate.outputs.wotag == 'Sonntag'
         uses: ethomson/send-tweet-action@v1
         with:
           status: |
