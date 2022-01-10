@@ -4,7 +4,7 @@ on:
     config:
       limit: 1
       active: true
-      every: "30 5 */2 * 1-5"
+      every: "30 5 */2 * *"
 jobs:
   tweet:
     runs-on: ubuntu-latest
@@ -39,10 +39,31 @@ jobs:
           else
             echo "::set-output name=wotag::Arbeitstag"
           fi
-      - uses: ethomson/send-tweet-action@v1
+      - if steps.translate.outputs.wotag != 'Samstag' && steps.translate.outputs.wotag != 'Sonntag'
+        uses: ethomson/send-tweet-action@v1
         with:
           status: |
               Auch heute am ${{steps.translate.outputs.wotag}} werden in Deutschland wieder rund 275 Kinder getötet.
+              #prochoice #Ableismus #Misogynie
+          consumer-key: ${{ secrets.TWITTER_CONSUMER_KEY }}
+          consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+          access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          access-token-secret: ${{ secrets.TWITTER_ACCESS_SECRET }}
+      - if steps.translate.outputs.wotag == 'Samstag'
+        uses: ethomson/send-tweet-action@v1
+        with:
+          status: |
+              Wenn Abtreibungsanbieter am ${{steps.translate.outputs.wotag}} arbeiten, werden heute in Deutschland wieder rund 275 Kinder getötet.
+              #prochoice #Ableismus #Misogynie
+          consumer-key: ${{ secrets.TWITTER_CONSUMER_KEY }}
+          consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+          access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          access-token-secret: ${{ secrets.TWITTER_ACCESS_SECRET }}
+      - if steps.translate.outputs.wotag == 'Sonntag'
+        uses: ethomson/send-tweet-action@v1
+        with:
+          status: |
+              Wäre heute nicht ${{steps.translate.outputs.wotag}}, würden in Deutschland wieder rund 275 Kinder getötet werden.
               #prochoice #Ableismus #Misogynie
           consumer-key: ${{ secrets.TWITTER_CONSUMER_KEY }}
           consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
