@@ -1,0 +1,37 @@
+on:
+  rss:
+    url:
+      - https://www.vaticannews.va/de.rss.xml
+      - https://www.katholisch.de/aktuelles/aktuelle-artikel.rss
+#      - https://www.kath.net/ticker/index.xml # auskommentiert weil in der Pandemie zu sehr ins Dunkel abgedriftet.
+      - http://feeds.feedburner.com/kathnews-redaktion
+      - https://www.kath.ch/feed/
+      - https://www.blogs-kath.ch/feed/
+      - https://righttolife.org.uk/feed
+      - https://www.alfa-ev.de/feed/
+      - https://www.bundesverband-lebensrecht.de/feed/
+#      - https://www.die-tagespost.de/rss-feed/ # auskommentiert, weil technisch of fehler erzeugt.
+      - https://www.domradio.de/rss-feeds/domradio-rss.xml
+      - https://feeds.feedburner.com/cnadeutsche/nachrichten
+    config:
+      format: |
+        item.content = item.content.replace(/<style([\s\S]*?)<\/style>/gi, '').replace(/<script([\s\S]*?)<\/script>/gi, '').replace(/<\/div>/ig, '').replace(/<\/li>/ig, '').replace(/<li>/ig, '').replace(/<\/ul>/ig, '').replace(/<\/p>/ig, '').replace(/<br\s*[\/]?>/gi, '').replace(/<[^>]+>/ig, '').replace(/<\/*code>/ig, '').replace(/<\/*textarea.*>/ig, '').replace(/<\/*samp.*>/ig, '').replace(/<\/*pre.*>/ig, '')
+        return item;
+#      limit: 999
+      active: false
+jobs:
+  send2discord:
+    runs-on: ubuntu-latest
+    steps:
+      - name: an Discord posten
+        uses: actionsflow/axios@v1
+        id: api
+        with:
+          url: ${{ secrets.DISCORD_WEBHOOK_NACHRICHTEN }}
+          method: 'POST'
+          data: |
+            {
+              "username": "Merkur",
+              "avatar_url": "https://i.imgur.com/OrFTYIg.jpeg",
+              "content": "${{on.rss.outputs.title}}: ${{on.rss.outputs.content}} --> ${{on.rss.outputs.link}}  "
+            }
