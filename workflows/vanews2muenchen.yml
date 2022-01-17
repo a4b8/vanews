@@ -4,6 +4,9 @@ on:
     config:
       every: "0 */3 * * *"
       limit: 1
+      format: |
+        item.content = item.content.replace(/<p>/gi, '').replace(/<\/p>/gi, '').replace(/<p><a href="/ig, '').replace(/">Alles lesen<\/a><\/p>/ig, '')
+        return item;
 jobs:
   fediverse-mastodon:
     name: send2mastodon
