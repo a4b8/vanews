@@ -31,8 +31,8 @@ jobs:
           method: 'POST'
           accept: 200,201,204,429
           headers: '{ "Content-Type": "application/json" }'
-          data: '{ "source": "Twitter",  "title": "${{ on.twitter.outputs.user.name }",  "htmlstatus": "<<<${{ on.twitter.outputs.full_text }}>>><b><br><\/b><p><i><a href=\"https:\/\/twitter.com\/${{ on.twitter.outputs.user.screen_name }}\/status\/${{ on.twitter.outputs.id_str }}\">https:\/\/twitter.com\/${{ on.twitter.outputs.user.screen_name }}\/status\/${{ on.twitter.outputs.id_str }}</a></i><\/p>" }'
-          params: '{ "source": "Twitter",  "title": "${{ on.twitter.outputs.user.name }",  "htmlstatus": "<<<${{ on.twitter.outputs.full_text }}>>><b><br><\/b><p><i><a href=\"https:\/\/twitter.com\/${{ on.twitter.outputs.user.screen_name }}\/status\/${{ on.twitter.outputs.id_str }}\">https:\/\/twitter.com\/${{ on.twitter.outputs.user.screen_name }}\/status\/${{ on.twitter.outputs.id_str }}</a></i><\/p>" }'
+          data: '{ "source": "Twitter",  "title": "Catholic News Agency",  "htmlstatus": "CNA: <<<${{ on.twitter.outputs.full_text }}>>><b><br><\/b><p><i><a href=\"https:\/\/twitter.com\/${{ on.twitter.outputs.user.screen_name }}\/status\/${{ on.twitter.outputs.id_str }}\">https:\/\/twitter.com\/${{ on.twitter.outputs.user.screen_name }}\/status\/${{ on.twitter.outputs.id_str }}</a></i><\/p>" }'
+          params: '{ "source": "Twitter",  "title": "Catholic News Agency",  "htmlstatus": "CNA: <<<${{ on.twitter.outputs.full_text }}>>><b><br><\/b><p><i><a href=\"https:\/\/twitter.com\/${{ on.twitter.outputs.user.screen_name }}\/status\/${{ on.twitter.outputs.id_str }}\">https:\/\/twitter.com\/${{ on.twitter.outputs.user.screen_name }}\/status\/${{ on.twitter.outputs.id_str }}</a></i><\/p>" }'
           timeout: 10000
           basic-auth: ${{ secrets.friendica_auth_username }}:${{ secrets.friendica_auth_password }}
           is_debug: true
