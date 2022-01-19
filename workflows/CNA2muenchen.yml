@@ -1,0 +1,20 @@
+on:
+  rss:
+    url: https://feeds.feedburner.com/cnadeutsche/nachrichten
+    config:
+      every: "0 */3 * * *"
+      limit: 1
+      format: |
+        item.content = item.content.replace(/<p>/gi, '').replace(/<\/p>/gi, '').replace(/<a href="/ig, '').replace(/">Alles lesen<\/a>/ig, '')
+        return item;
+jobs:
+  fediverse-mastodon:
+    name: send2mastodon
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Call fediverse'
+        uses: rzr/fediverse-action@master
+        with:
+          access-token: ${{ secrets.MASTODON_ACCESS_TOKEN_VANEWS }}
+          message: "<<<${{on.rss.outputs.content}}>>> ${{on.rss.outputs.link}}"
+          host: "muenchen.social" # If not using default "mastodon.social"
