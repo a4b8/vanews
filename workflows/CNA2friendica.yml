@@ -1,24 +1,14 @@
 on:
-  twitter:
-    api: statuses/user_timeline
-    auth:
-      consumer_key: ${{ secrets.TWITTER_CONSUMER_KEY }}
-      consumer_secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
-      access_token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
-      access_token_secret: ${{ secrets.TWITTER_ACCESS_SECRET }}
-    params:
-      screen_name: CNAdeutsch
-      exclude_replies: true
-      include_rts: true
+  rss:
+    url:
+      - https://feeds.feedburner.com/cnadeutsche/nachrichten
     config:
       active: true
       every: "0 */4 * * *"
       limit: 1
-      filter:
-        full_text:
-          $regex: ....+
-        created_at:
-          $regex: ....+
+      format: |
+        item.content = item.content.replace(/<style([\s\S]*?)<\/style>/gi, '').replace(/<script([\s\S]*?)<\/script>/gi, '').replace(/<\/div>/ig, '').replace(/<\/li>/ig, '').replace(/<li>/ig, '').replace(/<\/ul>/ig, '').replace(/<\/p>/ig, '').replace(/<br\s*[\/]?>/gi, '').replace(/<[^>]+>/ig, '').replace(/<\/*code>/ig, '').replace(/<\/*textarea.*>/ig, '').replace(/<\/*samp.*>/ig, '').replace(/<\/*pre.*>/ig, '')
+        return item;
 jobs:
   cna2friendica:
     name: 'Post CNA to Friendica'
@@ -31,8 +21,8 @@ jobs:
           method: 'POST'
           accept: 200,201,204,429
           headers: '{ "Content-Type": "application/json" }'
-          data: '{ "source": "Twitter",  "title": "Catholic News Agency",  "htmlstatus": "CNA: <<<${{ on.twitter.outputs.full_text }}>>><b><br><\/b><p><i><a href=\"https:\/\/twitter.com\/${{ on.twitter.outputs.user.screen_name }}\/status\/${{ on.twitter.outputs.id_str }}\">https:\/\/twitter.com\/${{ on.twitter.outputs.user.screen_name }}\/status\/${{ on.twitter.outputs.id_str }}</a></i><\/p>" }'
-          params: '{ "source": "Twitter",  "title": "Catholic News Agency",  "htmlstatus": "CNA: <<<${{ on.twitter.outputs.full_text }}>>><b><br><\/b><p><i><a href=\"https:\/\/twitter.com\/${{ on.twitter.outputs.user.screen_name }}\/status\/${{ on.twitter.outputs.id_str }}\">https:\/\/twitter.com\/${{ on.twitter.outputs.user.screen_name }}\/status\/${{ on.twitter.outputs.id_str }}</a></i><\/p>" }'
+          data: '{ "source": "Twitter",  "title": "${{on.rss.outputs.title}}",  "htmlstatus": "${{on.rss.outputs.content}}<b><br><\/b><p><i><a href=\"${{on.rss.outputs.link}}\">${{on.rss.outputs.link}}</a></i><\/p>" }'
+          params: '{ "source": "Twitter",  "title": "${{on.rss.outputs.title}}",  "htmlstatus": "${{on.rss.outputs.content}}<b><br><\/b><p><i><a href=\"${{on.rss.outputs.link}}\">${{on.rss.outputs.link}}</a></i><\/p>" }'
           timeout: 10000
           basic-auth: ${{ secrets.friendica_auth_username }}:${{ secrets.friendica_auth_password }}
           is_debug: true
