@@ -1,7 +1,6 @@
 on:
   rss:
-    url:
-      - https://feeds.feedburner.com/cnadeutsche/nachrichten
+    url: https://feeds.feedburner.com/cnadeutsche/nachrichten
     config:
       active: true
       every: "0 */4 * * *"
