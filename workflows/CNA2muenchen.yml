@@ -16,8 +16,16 @@ jobs:
         uses: rzr/fediverse-action@master
         with:
           access-token: ${{ secrets.MASTODON_ACCESS_TOKEN_VANEWS }}
-          message: "<<<${{on.rss.outputs.content}}>>> ${{on.rss.outputs.link}}"
+          message: |
+              ${{on.rss.outputs.content}}
+              ${{on.rss.outputs.link}}"
           host: "muenchen.social" # If not using default "mastodon.social"
-      - run: echo ${{ on.rss.outputs.title }}
-      - run: echo ${{ on.rss.outputs.content }}
-      - run: echo ${{ on.rss.outputs.link }}
+      - name: Print Outputs
+        env:
+          title: ${{on.rss.outputs.title}}
+          content: ${{on.rss.outputs.content}}
+          link: ${{on.rss.outputs.link}}
+        run: |
+          echo title: $title
+          echo content: $content
+          echo link: $link
