@@ -21,8 +21,8 @@ jobs:
           method: 'POST'
           accept: 200,201,204,429
           headers: '{ "Content-Type": "application/json" }'
-          data: '{ "source": "Twitter",  "title": "${{on.rss.outputs.title}}",  "htmlstatus": "${{on.rss.outputs.content}}<b><br><\/b><p><i><a href=\"${{on.rss.outputs.link}}\">${{on.rss.outputs.link}}</a></i><\/p>" }'
-          params: '{ "source": "Twitter",  "title": "${{on.rss.outputs.title}}",  "htmlstatus": "${{on.rss.outputs.content}}<b><br><\/b><p><i><a href=\"${{on.rss.outputs.link}}\">${{on.rss.outputs.link}}</a></i><\/p>" }'
+          data: '{ "source": "CNA",  "title": "${{on.rss.outputs.title}}",  "htmlstatus": "${{on.rss.outputs.content}}<b><br><\/b><p><i><a href=\"${{on.rss.outputs.link}}\">${{on.rss.outputs.link}}<\/a><\/i><\/p>" }'
+          params: '{ "source": "CNA",  "title": "${{on.rss.outputs.title}}",  "htmlstatus": "${{on.rss.outputs.content}}<b><br><\/b><p><i><a href=\"${{on.rss.outputs.link}}\">${{on.rss.outputs.link}}<\/a><\/i><\/p>" }'
           timeout: 10000
           basic-auth: ${{ secrets.friendica_auth_username }}:${{ secrets.friendica_auth_password }}
           is_debug: true
