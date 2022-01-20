@@ -6,8 +6,8 @@ on:
       every: "* * * * *"
       limit: 1
       format: |
-        item.content = item.content.replace(/<style([\s\S]*?)<\/style>/gi, '').replace(/<script([\s\S]*?)<\/script>/gi, '').replace(/<\/div>/ig, '').replace(/<\/li>/ig, '').replace(/<li>/ig, '').replace(/<\/ul>/ig, '').replace(/<\/p>/ig, '').replace(/<br\s*[\/]?>/gi, '').replace(/<[^>]+>/ig, '').replace(/<\/*code>/ig, '').replace(/<\/*textarea.*>/ig, '').replace(/<\/*samp.*>/ig, '').replace(/<\/*pre.*>/ig, '').replace(/"/ig, '&quot;')
-        item.title = item.title.replace(/<style([\s\S]*?)<\/style>/gi, '').replace(/<script([\s\S]*?)<\/script>/gi, '').replace(/<\/div>/ig, '').replace(/<\/li>/ig, '').replace(/<li>/ig, '').replace(/<\/ul>/ig, '').replace(/<\/p>/ig, '').replace(/<br\s*[\/]?>/gi, '').replace(/<[^>]+>/ig, '').replace(/<\/*code>/ig, '').replace(/<\/*textarea.*>/ig, '').replace(/<\/*samp.*>/ig, '').replace(/<\/*pre.*>/ig, '').replace(/"/ig, '&quot;')
+        item.content = item.content.replace(/<style([\s\S]*?)<\/style>/gi, '').replace(/<script([\s\S]*?)<\/script>/gi, '').replace(/<\/div>/ig, '').replace(/<\/li>/ig, '').replace(/<li>/ig, '').replace(/<\/ul>/ig, '').replace(/<\/p>/ig, '').replace(/<br\s*[\/]?>/gi, '').replace(/<[^>]+>/ig, '').replace(/<\/*code>/ig, '').replace(/<\/*textarea.*>/ig, '').replace(/<\/*samp.*>/ig, '').replace(/<\/*pre.*>/ig, '').replace(/"/ig, '&quot;').trim()
+        item.title = item.title.replace(/<style([\s\S]*?)<\/style>/gi, '').replace(/<script([\s\S]*?)<\/script>/gi, '').replace(/<\/div>/ig, '').replace(/<\/li>/ig, '').replace(/<li>/ig, '').replace(/<\/ul>/ig, '').replace(/<\/p>/ig, '').replace(/<br\s*[\/]?>/gi, '').replace(/<[^>]+>/ig, '').replace(/<\/*code>/ig, '').replace(/<\/*textarea.*>/ig, '').replace(/<\/*samp.*>/ig, '').replace(/<\/*pre.*>/ig, '').replace(/"/ig, '&quot;').trim()
         return item;
 jobs:
   cna2friendica:
@@ -21,8 +21,8 @@ jobs:
           method: 'POST'
           accept: 200,201,204,429
           headers: '{ "Content-Type": "application/json" }'
-          data: '{ "source": "CNA",  "title": "${{on.rss.outputs.title}}",  "htmlstatus": "CNA: <<<${{on.rss.outputs.content}}>>><b><br><\/b><p><i><a href=\"${{on.rss.outputs.link}}\">${{on.rss.outputs.link}}<\/a><\/i><\/p>" }'
-          params: '{ "source": "CNA",  "title": "${{on.rss.outputs.title}}",  "htmlstatus": "CNA: <<<${{on.rss.outputs.content}}>>><b><br><\/b><p><i><a href=\"${{on.rss.outputs.link}}\">${{on.rss.outputs.link}}<\/a><\/i><\/p>" }'
+          data: '{ "source": "CNA",  "title": "${{on.rss.outputs.title}}",  "htmlstatus": "${{on.rss.outputs.content}}<b><br><\/b><p><i><a href=\"${{on.rss.outputs.link}}\">${{on.rss.outputs.link}}<\/a><\/i><\/p>" }'
+          params: '{ "source": "CNA",  "title": "${{on.rss.outputs.title}}",  "htmlstatus": "${{on.rss.outputs.content}}<b><br><\/b><p><i><a href=\"${{on.rss.outputs.link}}\">${{on.rss.outputs.link}}<\/a><\/i><\/p>" }'
           timeout: 10000
           basic-auth: ${{ secrets.friendica_auth_username }}:${{ secrets.friendica_auth_password }}
           is_debug: true
