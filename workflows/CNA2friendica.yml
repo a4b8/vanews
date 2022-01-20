@@ -26,6 +26,6 @@ jobs:
           timeout: 10000
           basic-auth: ${{ secrets.friendica_auth_username }}:${{ secrets.friendica_auth_password }}
           is_debug: true
-      - run: echo ${{ steps.api.outputs.title }}
-      - run: echo ${{ steps.api.outputs.content }}
-      - run: echo ${{ steps.api.outputs.link }}
+      - run: echo ${{ on.rss.outputs.title }}
+      - run: echo ${{ on.rss.outputs.content }}
+      - run: echo ${{ on.rss.outputs.link }}
