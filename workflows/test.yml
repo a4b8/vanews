@@ -1,0 +1,19 @@
+on:
+  rss:
+    url: https://feeds.feedburner.com/cnadeutsche/nachrichten
+    config:
+      active: true
+      every: "* * * * *"
+      limit: 10
+      format: |
+        item.content = item.content.replace(/<style([\s\S]*?)<\/style>/gi, '').replace(/<script([\s\S]*?)<\/script>/gi, '').replace(/<\/div>/ig, '').replace(/<\/li>/ig, '').replace(/<li>/ig, '').replace(/<\/ul>/ig, '').replace(/<\/p>/ig, '').replace(/<br\s*[\/]?>/gi, '').replace(/<[^>]+>/ig, '').replace(/<\/*code>/ig, '').replace(/<\/*textarea.*>/ig, '').replace(/<\/*samp.*>/ig, '').replace(/<\/*pre.*>/ig, '').replace(/"/ig, '&quot;')
+        item.title = item.title.replace(/<style([\s\S]*?)<\/style>/gi, '').replace(/<script([\s\S]*?)<\/script>/gi, '').replace(/<\/div>/ig, '').replace(/<\/li>/ig, '').replace(/<li>/ig, '').replace(/<\/ul>/ig, '').replace(/<\/p>/ig, '').replace(/<br\s*[\/]?>/gi, '').replace(/<[^>]+>/ig, '').replace(/<\/*code>/ig, '').replace(/<\/*textarea.*>/ig, '').replace(/<\/*samp.*>/ig, '').replace(/<\/*pre.*>/ig, '').replace(/"/ig, '&quot;')
+        return item;
+jobs:
+  cna2friendica:
+    name: 'Post CNA to Friendica'
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{ on.rss.outputs.title }}
+      - run: echo ${{ on.rss.outputs.content }}
+      - run: echo ${{ on.rss.outputs.link }}
