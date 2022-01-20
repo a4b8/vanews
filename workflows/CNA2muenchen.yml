@@ -2,10 +2,10 @@ on:
   rss:
     url: https://feeds.feedburner.com/cnadeutsche/nachrichten
     config:
-      every: "0 */3 * * *"
+      every: "0 * * * *"
       limit: 1
       format: |
-        item.content = item.content.replace(/<p>/gi, '').replace(/<\/p>/gi, '').replace(/<a href="/ig, '').replace(/">Alles lesen<\/a>/ig, '')
+        item.content = item.content.replace(/<style([\s\S]*?)<\/style>/gi, '').replace(/<script([\s\S]*?)<\/script>/gi, '').replace(/<\/div>/ig, '').replace(/<\/li>/ig, '').replace(/<li>/ig, '').replace(/<\/ul>/ig, '').replace(/<\/p>/ig, '').replace(/<br\s*[\/]?>/gi, '').replace(/<[^>]+>/ig, '').replace(/<\/*code>/ig, '').replace(/<\/*textarea.*>/ig, '').replace(/<\/*samp.*>/ig, '').replace(/<\/*pre.*>/ig, '').replace(/"/ig, '&quot;')
         return item;
 jobs:
   fediverse-mastodon:
@@ -18,3 +18,6 @@ jobs:
           access-token: ${{ secrets.MASTODON_ACCESS_TOKEN_VANEWS }}
           message: "<<<${{on.rss.outputs.content}}>>> ${{on.rss.outputs.link}}"
           host: "muenchen.social" # If not using default "mastodon.social"
+      - run: echo ${{ steps.api.outputs.title }}
+      - run: echo ${{ steps.api.outputs.content }}
+      - run: echo ${{ steps.api.outputs.status }}
