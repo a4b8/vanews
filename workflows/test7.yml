@@ -1,0 +1,37 @@
+on:
+  rss:
+    url: https://feeds.feedburner.com/cnadeutsche/nachrichten
+    config:
+      active: true
+      every: "* * * * *"
+      limit: 5
+      format: |
+        item.content = item.content.replace(/<style([\s\S]*?)<\/style>/gi, '').replace(/<script([\s\S]*?)<\/script>/gi, '').replace(/<\/div>/ig, '').replace(/<\/li>/ig, '').replace(/<li>/ig, '').replace(/<\/ul>/ig, '').replace(/<\/p>/ig, '').replace(/<br\s*[\/]?>/gi, '').replace(/<[^>]+>/ig, '').replace(/<\/*code>/ig, '').replace(/<\/*textarea.*>/ig, '').replace(/<\/*samp.*>/ig, '').replace(/<\/*pre.*>/ig, '').replace(/"/ig, '&quot;').trim()
+        item.title = item.title.replace(/<style([\s\S]*?)<\/style>/gi, '').replace(/<script([\s\S]*?)<\/script>/gi, '').replace(/<\/div>/ig, '').replace(/<\/li>/ig, '').replace(/<li>/ig, '').replace(/<\/ul>/ig, '').replace(/<\/p>/ig, '').replace(/<br\s*[\/]?>/gi, '').replace(/<[^>]+>/ig, '').replace(/<\/*code>/ig, '').replace(/<\/*textarea.*>/ig, '').replace(/<\/*samp.*>/ig, '').replace(/<\/*pre.*>/ig, '').replace(/"/ig, '&quot;').trim()
+        return item;
+jobs:
+  cna2friendica:
+    name: 'Post CNA to Friendica'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Call friendica API'
+        uses: actionsflow/axios@v1
+        with:
+          url: https://libranet.de/api/statuses/update.json
+          method: 'POST'
+          accept: 200,201,204,429
+          headers: '{ "Content-Type": "application/json" }'
+          data: '{ "source": "Fedilab",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<<<${{on.rss.outputs.content}}>>><br><<<${{on.rss.outputs.link}}>>>" }'
+          params: '{ "source": "Fedilab",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<<<${{on.rss.outputs.content}}>>><br><<<${{on.rss.outputs.link}}>>>" }'
+          timeout: 10000
+          basic-auth: ${{ secrets.friendica_auth_username }}:${{ secrets.friendica_auth_password }}
+          is_debug: true
+      - name: Print Outputs
+        env:
+          title: ${{on.rss.outputs.title}}
+          content: ${{on.rss.outputs.content}}
+          link: ${{on.rss.outputs.link}}
+        run: |
+          echo title: $title
+          echo content: $content
+          echo link: $link
