@@ -18,6 +18,6 @@ jobs:
           access-token: ${{ secrets.MASTODON_ACCESS_TOKEN_VANEWS }}
           message: "<<<${{on.rss.outputs.content}}>>> ${{on.rss.outputs.link}}"
           host: "muenchen.social" # If not using default "mastodon.social"
-      - run: echo ${{ steps.api.outputs.title }}
-      - run: echo ${{ steps.api.outputs.content }}
-      - run: echo ${{ steps.api.outputs.status }}
+      - run: echo ${{ on.rss.outputs.title }}
+      - run: echo ${{ on.rss.outputs.content }}
+      - run: echo ${{ on.rss.outputs.link }}
