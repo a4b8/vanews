@@ -1,7 +1,7 @@
 on:
   twitter:
     config:
-      every: "30 6 * * *"
+      every: "0 6 * * *"
     api: statuses/user_timeline
     auth:
       consumer_key: ${{ secrets.TWITTER_CONSUMER_KEY }}
