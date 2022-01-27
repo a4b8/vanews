@@ -4,7 +4,7 @@ on:
     config:
       every: "0 */4 * * *"
       limit: 1
-      active: true
+      active: false
       filter:
         content:
           $regex: ....+
