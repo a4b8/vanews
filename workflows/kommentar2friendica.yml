@@ -8,8 +8,8 @@ on:
       filter:
         content:
           $regex: ....+
-        title:
-          $regex: Kommentar
+        categories:
+          $regex: MEDITATIO
 jobs:
   kommentar2friendica:
     name: 'Post Kommentar to Friendica'
