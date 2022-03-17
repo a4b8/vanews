@@ -1,0 +1,28 @@
+on:
+  rss:
+    url: https://katholischlogisch.blog/feed/rss2
+    config:
+      active: true
+      filter:
+        content:
+          $regex: ....+
+        title:
+          $regex: ....+
+        link:
+          $regex: ....+
+jobs:
+  tgram:
+    name: Telegram
+    runs-on: ubuntu-latest
+    steps:
+      - name: send telegram message on 1000plus
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+              ${{on.rss.outputs.title}}
+              
+              ${{on.rss.outputs.content}}
+              
+              ${{on.rss.outputs.link}}
