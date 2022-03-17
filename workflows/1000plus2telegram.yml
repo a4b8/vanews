@@ -1,0 +1,23 @@
+on:
+  rss:
+    url: http://www.1000plus.net/rss.xml
+    config:
+      active: true
+jobs:
+  tgram:
+    name: Telegram
+    runs-on: ubuntu-latest
+    steps:
+      - name: send telegram message on 1000plus
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+              ${{on.rss.outputs.title}}
+            
+              ${{on.rss.outputs.contentSnippet}}
+            
+              ${{on.rss.outputs.content}}
+            
+              ${{on.rss.outputs.link}}
