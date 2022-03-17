@@ -28,7 +28,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-	      ${{ on.twitter.outputs.user.screen_name }}:
+              ${{ on.twitter.outputs.user.screen_name }}:
               
               ${{ on.twitter.outputs.full_text }}
               
