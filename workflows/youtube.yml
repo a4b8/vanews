@@ -103,3 +103,15 @@ jobs:
           value1: ${{on.youtube.outputs.link}}
           value2: ${{on.youtube.outputs.description}}
           value3: "YouTube Videos"
+  video2telegram:
+    name: send a telegram
+    runs-on: ubuntu-latest
+    steps:
+      - uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+              ${{on.youtube.outputs.title}}
+              ${{on.youtube.outputs.description}}
+              ${{on.youtube.outputs.link}}
