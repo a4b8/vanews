@@ -65,3 +65,16 @@ jobs:
       - run: echo ${{ steps.api.outputs.status }}
       - run: echo ${{ steps.api.outputs.data }}
       - run: echo ${{ steps.api.outputs.headers }}
+  tagespost2telegram:
+    name: Telegram
+    runs-on: ubuntu-latest
+    steps:
+      - name: send telegram message
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+              ${{on.rss.outputs.title}}
+              
+              ${{on.rss.outputs.link}}
