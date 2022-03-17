@@ -27,4 +27,4 @@ jobs:
               
               ${{ on.twitter.outputs.full_text }}
               
-              https:\/\/twitter.com\/${{ on.twitter.outputs.user.screen_name }}\/status\/${{ on.twitter.outputs.id_str }}
+              https://twitter.com/${{ on.twitter.outputs.user.screen_name }}/status/${{ on.twitter.outputs.id_str }}
