@@ -10,7 +10,7 @@ on:
           $regex: ....+
         categories:
           $not:
-            $regex: MEDITATIO
+            $regex: (MEDITATIO|PSALMUS)
 jobs:
   post2untii:
     name: Request
