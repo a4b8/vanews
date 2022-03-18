@@ -27,3 +27,18 @@ jobs:
               "value2": "<<<${{ on.rss.outputs.content }}>>>",
               "value3": "deutsch"
             }
+  pipe2nuntii:
+    name: Request
+    runs-on: ubuntu-latest
+    steps:
+      - name: Make a HTTP Request
+        uses: actionsflow/axios@main
+        with:
+          url: ${{ secrets.NUNTII_PIPE_URL }}
+          method: POST
+          body: |
+            {
+              "title": "<<<${{ on.rss.outputs.title }}>>>",
+              "content": "<<<${{ on.rss.outputs.content }}>>>",
+              "category": "deutsch"
+            }
