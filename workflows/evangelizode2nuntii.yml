@@ -12,21 +12,21 @@ on:
           $not:
             $regex: MEDITATIO
 jobs:
-  post2untii:
-    name: Request
-    runs-on: ubuntu-latest
-    steps:
-      - name: Make a HTTP Request
-        uses: actionsflow/axios@main
-        with:
-          url: ${{ secrets.NUNTII_WEBHOOK_URL }}
-          method: POST
-          body: |
-            {
-              "value1": "<<<${{ on.rss.outputs.title }}>>>",
-              "value2": "<<<${{ on.rss.outputs.content }}>>>",
-              "value3": "deutsch"
-            }
+#   post2untii:
+#     name: Request
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Make a HTTP Request
+#         uses: actionsflow/axios@main
+#         with:
+#           url: ${{ secrets.NUNTII_WEBHOOK_URL }}
+#           method: POST
+#           body: |
+#             {
+#               "value1": "<<<${{ on.rss.outputs.title }}>>>",
+#               "value2": "<<<${{ on.rss.outputs.content }}>>>",
+#               "value3": "deutsch"
+#             }
   pipe2nuntii:
     name: Request
     runs-on: ubuntu-latest
