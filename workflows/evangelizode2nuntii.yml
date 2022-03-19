@@ -8,9 +8,9 @@ on:
       filter:
         content:
           $regex: ....+
-        categories:
-          $not:
-            $regex: MEDITATIO
+#         categories:
+#           $not:
+#             $regex: MEDITATIO
 jobs:
 #   post2untii:
 #     name: Request
