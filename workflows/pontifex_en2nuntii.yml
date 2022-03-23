@@ -1,0 +1,30 @@
+on:
+  twitter:
+    api: statuses/user_timeline
+    auth:
+      consumer_key: ${{ secrets.TWITTER_CONSUMER_KEY }}
+      consumer_secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+      access_token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+      access_token_secret: ${{ secrets.TWITTER_ACCESS_SECRET }}
+    params:
+      screen_name: Pontifex
+      exclude_replies: true,
+      include_rts: false,
+    config:
+      active: true
+jobs:
+  pipe2nuntii:
+    name: Request
+    runs-on: ubuntu-latest
+    steps:
+      - name: Make a HTTP Request
+        uses: actionsflow/axios@main
+        with:
+          url: ${{ secrets.NUNTII_PIPE_URL }}
+          method: POST
+          body: |
+            {
+              "title": "Franziskus I.",
+              "content": "${{ on.twitter.outputs.full_text }} https://twitter.com/${{ on.twitter.outputs.user.screen_name }}/status/${{ on.twitter.outputs.id_str }}",
+              "category": [ "english", "tweets" ]
+            }
