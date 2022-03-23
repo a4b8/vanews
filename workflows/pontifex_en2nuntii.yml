@@ -25,6 +25,6 @@ jobs:
           body: |
             {
               "title": "Franziskus I.",
-              "content": "${{ on.twitter.outputs.full_text }} https://twitter.com/${{ on.twitter.outputs.user.screen_name }}/status/${{ on.twitter.outputs.id_str }}",
+              "content": "${{ on.twitter.outputs.full_text }} <br><a href=\"https://twitter.com/${{ on.twitter.outputs.user.screen_name }}/status/${{ on.twitter.outputs.id_str }}\">https://twitter.com/${{ on.twitter.outputs.user.screen_name }}/status/${{ on.twitter.outputs.id_str }}</a>",
               "category": [ "english", "tweets" ]
             }
