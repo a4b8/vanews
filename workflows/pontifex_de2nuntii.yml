@@ -24,7 +24,7 @@ jobs:
           method: POST
           body: |
             {
-              "title": "<<<${{ on.rss.outputs.title }}>>>",
-              "content": "<<<${{ on.rss.outputs.content }}>>>",
+              "title": "Franziskus I.",
+              "content": "${{ on.twitter.outputs.full_text }} https://twitter.com/${{ on.twitter.outputs.user.screen_name }}/status/${{ on.twitter.outputs.id_str }}",
               "category": [ "deutsch", "tweets" ]
             }
