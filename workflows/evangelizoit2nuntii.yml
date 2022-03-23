@@ -1,0 +1,26 @@
+on:
+  rss:
+    url:
+      - http://evangelizo.org/rss/v2/evangelizo_rss-it.xml
+      - https://rss.evangelizo.org/rss/v2/evangelizo_rss-it.xml
+    config:
+      every: "0 3 * * *"
+      filter:
+        content:
+          $regex: ....+
+jobs:
+  pipe2nuntii:
+    name: Request
+    runs-on: ubuntu-latest
+    steps:
+      - name: Make a HTTP Request
+        uses: actionsflow/axios@main
+        with:
+          url: ${{ secrets.NUNTII_PIPE_URL }}
+          method: POST
+          body: |
+            {
+              "title": "<<<${{ on.rss.outputs.title }}>>>",
+              "content": "<<<${{ on.rss.outputs.content }}>>>",
+              "category": "italiano"
+            }
