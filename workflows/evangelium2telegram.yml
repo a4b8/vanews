@@ -15,6 +15,30 @@ jobs:
     name: Telegram
     runs-on: ubuntu-latest
     steps:
+      - name: Get textstelle
+        id: kapitel
+        run: echo "::set-output name=stelle::"$(echo "${{on.rss.outputs.title}}" | awk -F" " '{print $NF}')
+      - name: Get evangelist
+        id: evangelist
+        run: |
+          if [[ "${{on.rss.outputs.title}}" == *"Johannes"* ]]
+          then
+            echo "::set-output name=name::Johannes"
+          elif [[ "${{on.rss.outputs.title}}" == *"Lukas"* ]]
+          then
+            echo "::set-output name=name::Lukas"
+          elif [[ "${{on.rss.outputs.title}}" == *"Matthäus"* ]]
+          then
+            echo "::set-output name=name::Matthäus"
+          elif [[ "${{on.rss.outputs.title}}" == *"Markus"* ]]
+          then
+            echo "::set-output name=name::Markus"
+          else
+            echo "::set-output name=name::unbekannt"
+          fi
+      - name: Get link
+        id: link
+        run: echo "::set-output name=url::https://www.bibleserver.com/EU/${{steps.evangelist.outputs.name}}${{steps.kapitel.outputs.stelle}}"
       - name: send telegram message
         uses: appleboy/telegram-action@master
         with:
@@ -25,5 +49,5 @@ jobs:
               
               ${{on.rss.outputs.content}}
               
-              ${{on.rss.outputs.link}}
+              ${{steps.link.outputs.url}}
               
