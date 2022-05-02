@@ -15,6 +15,30 @@ jobs:
     name: 'Post Evangelium to Friendica'
     runs-on: ubuntu-latest
     steps:
+      - name: Get textstelle
+        id: kapitel
+        run: echo "::set-output name=stelle::"$(echo "${{on.rss.outputs.title}}" | awk -F" " '{print $NF}')
+      - name: Get evangelist
+        id: evangelist
+        run: |
+          if [[ "${{on.rss.outputs.title}}" == *"Johannes"* ]]
+          then
+            echo "::set-output name=name::Johannes"
+          elif [[ "${{on.rss.outputs.title}}" == *"Lukas"* ]]
+          then
+            echo "::set-output name=name::Lukas"
+          elif [[ "${{on.rss.outputs.title}}" == *"Matthäus"* ]]
+          then
+            echo "::set-output name=name::Matthäus"
+          elif [[ "${{on.rss.outputs.title}}" == *"Markus"* ]]
+          then
+            echo "::set-output name=name::Markus"
+          else
+            echo "::set-output name=name::unbekannt"
+          fi
+      - name: Get link
+        id: link
+        run: echo "::set-output name=url::https://www.bibleserver.com/EU/${{steps.evangelist.outputs.name}}${{steps.kapitel.outputs.stelle}}"
       - name: 'Call friendica API'
         uses: actionsflow/axios@v1
         with:
@@ -22,8 +46,8 @@ jobs:
           method: 'POST'
           accept: 200,201,204,429
           headers: '{ "Content-Type": "application/json" }'
-          data: '{ "source": "ETfT",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<b><<<${{on.rss.outputs.title}}>>></b>:<b><br></b><<<${{on.rss.outputs.content}}>>><b><br></b><i><a href=\"${{on.rss.outputs.link}}\"><<<${{on.rss.outputs.link}}>>></a></i>" }'
-          params: '{ "source": "ETfT",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<b><<<${{on.rss.outputs.title}}>>></b>:<b><br></b><<<${{on.rss.outputs.content}}>>><b><br></b><i><a href=\"${{on.rss.outputs.link}}\"><<<${{on.rss.outputs.link}}>>></a></i>" }'
+          data: '{ "source": "ETfT",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<b><a href =\"${{steps.link.outputs.url}}\"><<<${{on.rss.outputs.title}}>>></a></b>:<b><br></b><<<${{on.rss.outputs.content}}>>><b><br></b><i><a href=\"${{on.rss.outputs.link}}\"><<<${{on.rss.outputs.link}}>>></a></i>" }'
+          params: '{ "source": "ETfT",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<b><a href =\"${{steps.link.outputs.url}}\"><<<${{on.rss.outputs.title}}>>></a></b>:<b><br></b><<<${{on.rss.outputs.content}}>>><b><br></b><i><a href=\"${{on.rss.outputs.link}}\"><<<${{on.rss.outputs.link}}>>></a></i>" }'
           timeout: 10000
           basic-auth: ${{ secrets.friendica_auth_username }}:${{ secrets.friendica_auth_password }}
           is_debug: true
