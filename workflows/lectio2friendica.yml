@@ -15,6 +15,105 @@ jobs:
     name: 'Post Lesung to Friendica'
     runs-on: ubuntu-latest
     steps:
+      - name: Get textstelle
+        id: kapitel
+        run: echo "::set-output name=stelle::"$(echo "${{on.rss.outputs.title}}" | awk -F" " '{print $NF}')
+      - name: Get buch
+        id: buch
+        run: |
+          if [[ "${{on.rss.outputs.title}}" == *"Apostelgeschichte"* ]]
+          then
+            echo "::set-output name=name::Apostelgeschichte"
+          elif [[ "${{on.rss.outputs.title}}" == *"Brief des Apostel Paulus an die Römer"* ]]
+          then
+            echo "::set-output name=name::Römer"
+          elif [[ "${{on.rss.outputs.title}}" == *"Erster Brief des Apostel Paulus an die Korinther"* ]]
+          then
+            echo "::set-output name=name::1.Korinther"
+          elif [[ "${{on.rss.outputs.title}}" == *"Zweiter Brief des Apostel Paulus an die Korinther"* ]]
+          then
+            echo "::set-output name=name::2.Korinther"
+          elif [[ "${{on.rss.outputs.title}}" == *"Galater"* ]]
+          then
+            echo "::set-output name=name::Galater"
+          elif [[ "${{on.rss.outputs.title}}" == *"Galatien"* ]]
+          then
+            echo "::set-output name=name::Galater"
+          elif [[ "${{on.rss.outputs.title}}" == *"Epheser"* ]]
+          then
+            echo "::set-output name=name::Epheser"
+          elif [[ "${{on.rss.outputs.title}}" == *"Philipper"* ]]
+          then
+            echo "::set-output name=name::Philipper"
+          elif [[ "${{on.rss.outputs.title}}" == *"Kolosser"* ]]
+          then
+            echo "::set-output name=name::Kolosser"
+          elif [[ "${{on.rss.outputs.title}}" == *"Der erste Brief an die Thessalonicher"* ]]
+          then
+            echo "::set-output name=name::1.Thessalonicher"
+          elif [[ "${{on.rss.outputs.title}}" == *"Der zweite Brief an die Thessalonicher"* ]]
+          then
+            echo "::set-output name=name::2.Thessalonicher"
+          elif [[ "${{on.rss.outputs.title}}" == *"Der erste Brief an Timotheus"* ]]
+          then
+            echo "::set-output name=name::1.Timotheus"
+          elif [[ "${{on.rss.outputs.title}}" == *"Der zweite Brief an Timotheus"* ]]
+          then
+            echo "::set-output name=name::2.Timotheus"
+          elif [[ "${{on.rss.outputs.title}}" == *"Philemon"* ]]
+          then
+            echo "::set-output name=name::Philemon"
+          elif [[ "${{on.rss.outputs.title}}" == *"Titus"* ]]
+          then
+            echo "::set-output name=name::Titus"
+          elif [[ "${{on.rss.outputs.title}}" == *"Hebräer"* ]]
+          then
+            echo "::set-output name=name::Hebräer"
+          elif [[ "${{on.rss.outputs.title}}" == *"Jakobus"* ]]
+          then
+            echo "::set-output name=name::Jakobus"
+          elif [[ "${{on.rss.outputs.title}}" == *"erste Brief des Petrus"* ]]
+          then
+            echo "::set-output name=name::1.Petrus"
+          elif [[ "${{on.rss.outputs.title}}" == *"erste Brief des Apostels Petrus"* ]]
+          then
+            echo "::set-output name=name::1.Petrus"
+          elif [[ "${{on.rss.outputs.title}}" == *"zweite Brief des Petrus"* ]]
+          then
+            echo "::set-output name=name::2.Petrus"
+          elif [[ "${{on.rss.outputs.title}}" == *"zweite Brief des Apostels Petrus"* ]]
+          then
+            echo "::set-output name=name::2.Petrus"
+          elif [[ "${{on.rss.outputs.title}}" == *"erste Brief des Apostels Johannes"* ]]
+          then
+            echo "::set-output name=name::1.Johannes"
+          elif [[ "${{on.rss.outputs.title}}" == *"erste Brief des Johannes"* ]]
+          then
+            echo "::set-output name=name::1.Johannes"
+          elif [[ "${{on.rss.outputs.title}}" == *"zweite Brief des Apostels Johannes"* ]]
+          then
+            echo "::set-output name=name::2.Johannes"
+          elif [[ "${{on.rss.outputs.title}}" == *"zweite Brief des Johannes"* ]]
+          then
+            echo "::set-output name=name::2.Johannes"
+          elif [[ "${{on.rss.outputs.title}}" == *"dritte Brief des Apostels Johannes"* ]]
+          then
+            echo "::set-output name=name::3.Johannes"
+          elif [[ "${{on.rss.outputs.title}}" == *"dritte Brief des Johannes"* ]]
+          then
+            echo "::set-output name=name::3.Johannes"
+          elif [[ "${{on.rss.outputs.title}}" == *"Judas"* ]]
+          then
+            echo "::set-output name=name::Judas"
+          elif [[ "${{on.rss.outputs.title}}" == *"Offenbarung"* ]]
+          then
+            echo "::set-output name=name::Offenbarung"
+          else
+            echo "::set-output name=name::unbekannt"
+          fi
+      - name: Get link
+        id: link
+        run: echo "::set-output name=url::https://www.bibleserver.com/EU/${{steps.buch.outputs.name}}${{steps.kapitel.outputs.stelle}}"
       - name: 'Call friendica API'
         uses: actionsflow/axios@v1
         with:
@@ -22,8 +121,8 @@ jobs:
           method: 'POST'
           accept: 200,201,204,429
           headers: '{ "Content-Type": "application/json" }'
-          data: '{ "source": "ETfT",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<b><<<${{on.rss.outputs.title}}>>></b>:<b><br></b><<<${{on.rss.outputs.content}}>>><b><br></b><i><a href=\"${{on.rss.outputs.link}}\"><<<${{on.rss.outputs.link}}>>></a></i>" }'
-          params: '{ "source": "ETfT",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<b><<<${{on.rss.outputs.title}}>>></b>:<b><br></b><<<${{on.rss.outputs.content}}>>><b><br></b><i><a href=\"${{on.rss.outputs.link}}\"><<<${{on.rss.outputs.link}}>>></a></i>" }'
+          data: '{ "source": "ETfT",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<b><a href=\"${{steps.link.outputs.url}}\"><<<${{on.rss.outputs.title}}>>></a></b>:<b><br></b><<<${{on.rss.outputs.content}}>>><b><br></b><i><a href=\"${{on.rss.outputs.link}}\"><<<${{on.rss.outputs.link}}>>></a></i>" }'
+          params: '{ "source": "ETfT",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<b><a href=\"${{steps.link.outputs.url}}\"><<<${{on.rss.outputs.title}}>>></a></b>:<b><br></b><<<${{on.rss.outputs.content}}>>><b><br></b><i><a href=\"${{on.rss.outputs.link}}\"><<<${{on.rss.outputs.link}}>>></a></i>" }'
           timeout: 10000
           basic-auth: ${{ secrets.friendica_auth_username }}:${{ secrets.friendica_auth_password }}
           is_debug: true
