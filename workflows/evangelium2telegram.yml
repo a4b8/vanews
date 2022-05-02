@@ -39,15 +39,30 @@ jobs:
       - name: Get link
         id: link
         run: echo "::set-output name=url::https://www.bibleserver.com/EU/${{steps.evangelist.outputs.name}}${{steps.kapitel.outputs.stelle}}"
-      - name: send telegram message
+      - name: send titel message
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-              ${{on.rss.outputs.title}}:
+              ${{on.rss.outputs.title}}
+              (${{steps.link.outputs.url}})
+      - name: send inhalt message
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
               
               ${{on.rss.outputs.content}}
               
-              ${{steps.link.outputs.url}}
+      - name: send fuss message
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+              --
+              Quelle: ${{on.rss.outputs.url}}
               
+              ----------
