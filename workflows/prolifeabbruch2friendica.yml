@@ -18,6 +18,6 @@ jobs:
         headers: '{ "Content-Type": "application/json" }'
         data: '{ "source": "Tusky",  "title": "Der Begriff Schwangerschaftsabbruch ist irreführend.",  "htmlstatus": "Es ist ein Lebensabbruch. So wie jede Tötung. #prochoice #Abtreibung #wegmit218 #wegmit219a" }'
         params: '{ "source": "Tusky",  "title": "Der Begriff Schwangerschaftsabbruch ist irreführend.",  "htmlstatus": "Es ist ein Lebensabbruch. So wie jede Tötung. #prochoice #Abtreibung #wegmit218 #wegmit219a" }'
-        timeout: 10000
+        timeout: 60000
         basic-auth: ${{ secrets.friendica_auth_username }}:${{ secrets.friendica_auth_password }}
         is_debug: true
