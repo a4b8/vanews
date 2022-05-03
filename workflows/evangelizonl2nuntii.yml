@@ -4,7 +4,7 @@ on:
       - http://evangelizo.org/rss/v2/evangelizo_rss-nl.xml
       - https://rss.evangelizo.org/rss/v2/evangelizo_rss-nl.xml
     config:
-      every: "30 2 * * *"
+      every: "0 7 * * *"
       filter:
         content:
           $regex: ....+
