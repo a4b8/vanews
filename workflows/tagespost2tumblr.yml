@@ -2,7 +2,8 @@ on:
   rss:
     url: https://www.die-tagespost.de/storage/rss/rss/die-tagespost-komplett.xml
     config:
-      active: false
+      every: "0 1 * * *"
+      active: true
       filter:
         content:
           $regex: ....+
