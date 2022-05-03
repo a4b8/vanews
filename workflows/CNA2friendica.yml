@@ -23,7 +23,7 @@ jobs:
           headers: '{ "Content-Type": "application/json" }'
           data: '{ "source": "Fedilab",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<<<${{on.rss.outputs.content}}>>><br><<<${{on.rss.outputs.link}}>>>" }'
           params: '{ "source": "Fedilab",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<<<${{on.rss.outputs.content}}>>><br><<<${{on.rss.outputs.link}}>>>" }'
-          timeout: 10000
+          timeout: 60000
           basic-auth: ${{ secrets.friendica_auth_username }}:${{ secrets.friendica_auth_password }}
           is_debug: true
       - name: Print Outputs
