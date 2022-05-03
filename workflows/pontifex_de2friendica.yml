@@ -26,7 +26,7 @@ jobs:
           headers: '{ "Content-Type": "application/json" }'
           data: '{ "source": "Twitter",  "title": "Papst Franziskus I.",  "htmlstatus": "Franziskus I: <<<${{ on.twitter.outputs.full_text }}>>><b><br><\/b><p><i><a href=\"https:\/\/twitter.com\/${{ on.twitter.outputs.user.screen_name }}\/status\/${{ on.twitter.outputs.id_str }}\">https:\/\/twitter.com\/${{ on.twitter.outputs.user.screen_name }}\/status\/${{ on.twitter.outputs.id_str }}</a></i><\/p>" }'
           params: '{ "source": "Twitter",  "title": "Papst Franziskus I.",  "htmlstatus": "Franziskus I: <<<${{ on.twitter.outputs.full_text }}>>><b><br><\/b><p><i><a href=\"https:\/\/twitter.com\/${{ on.twitter.outputs.user.screen_name }}\/status\/${{ on.twitter.outputs.id_str }}\">https:\/\/twitter.com\/${{ on.twitter.outputs.user.screen_name }}\/status\/${{ on.twitter.outputs.id_str }}</a></i><\/p>" }'
-          timeout: 10000
+          timeout: 60000
           basic-auth: ${{ secrets.friendica_auth_username }}:${{ secrets.friendica_auth_password }}
           is_debug: true
       - run: echo ${{ steps.api.outputs.status }}
