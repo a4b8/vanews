@@ -63,6 +63,6 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
               --
-              Quelle: ${{on.rss.outputs.url}}
+              Quelle: ${{on.rss.outputs.link}}
               
               ----------
