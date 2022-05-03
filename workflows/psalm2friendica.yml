@@ -48,7 +48,7 @@ jobs:
           headers: '{ "Content-Type": "application/json" }'
           data: '{ "source": "ETfT",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<b><a href=\"${{steps.link.outputs.url}}\"><<<${{on.rss.outputs.title}}>>></a></b>:<b><br></b><<<${{on.rss.outputs.content}}>>><b><br></b><i><a href=\"${{on.rss.outputs.link}}\"><<<${{on.rss.outputs.link}}>>></a></i>" }'
           params: '{ "source": "ETfT",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<b><a href=\"${{steps.link.outputs.url}}\"><<<${{on.rss.outputs.title}}>>></a></b>:<b><br></b><<<${{on.rss.outputs.content}}>>><b><br></b><i><a href=\"${{on.rss.outputs.link}}\"><<<${{on.rss.outputs.link}}>>></a></i>" }'
-          timeout: 10000
+          timeout: 60000
           basic-auth: ${{ secrets.friendica_auth_username }}:${{ secrets.friendica_auth_password }}
           is_debug: true
       - run: echo ${{ steps.api.outputs.status }}
