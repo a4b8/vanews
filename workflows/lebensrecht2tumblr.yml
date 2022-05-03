@@ -6,6 +6,7 @@ on:
       - https://righttolife.org.uk/feed
       - https://kaleb.de/feed/
     config:
+      every: "0 1 * * *"
       active: true
       filter:
         content:
