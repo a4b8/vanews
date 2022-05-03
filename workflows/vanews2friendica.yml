@@ -38,7 +38,7 @@ jobs:
 
           # Request timeout (millisec)
           # default is `0` (no timeout)
-          timeout: 10000
+          timeout: 60000
 
           # Basic authentication using username and password
           # This will override the Authorization header, for example Authorization: Basic QWxhZGRpbjpPcGVuU2VzYW1l
