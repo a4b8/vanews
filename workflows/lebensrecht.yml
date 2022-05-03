@@ -54,6 +54,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 'Call friendica API'
+        id: api
         uses: actionsflow/axios@v1
         with:
           url: https://libranet.de/api/statuses/update.json
@@ -62,7 +63,7 @@ jobs:
           headers: '{ "Content-Type": "application/json" }'
           data: '{ "source": "Fedilab",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<<<${{on.rss.outputs.contentSnippet}}>>><br><<<${{on.rss.outputs.link}}>>>" }'
           params: '{ "source": "Fedilab",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<<<${{on.rss.outputs.contentSnippet}}>>><br><<<${{on.rss.outputs.link}}>>>" }'
-          timeout: 10000
+          timeout: 60000
           basic-auth: ${{ secrets.friendica_auth_username }}:${{ secrets.friendica_auth_password }}
           is_debug: true
       - run: echo ${{ steps.api.outputs.status }}
