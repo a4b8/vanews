@@ -49,7 +49,7 @@ jobs:
         headers: '{ "Content-Type": "application/json" }'
         data: '{ "source": "Tusky",  "title": "Auch heute am <<<${{steps.translate.outputs.wotag}}>>>",  "htmlstatus": "werden wieder rund 275 Kinder in Deutschland getötet werden. 96% davon auf Wunsch der Eltern. #prochoice #Ableismus #Misogynie" }'
         params: '{ "source": "Tusky",  "title": "Auch heute am <<<${{steps.translate.outputs.wotag}}>>>",  "htmlstatus": "werden wieder rund 275 Kinder in Deutschland getötet werden. 96% davon auf Wunsch der Eltern. #prochoice #Ableismus #Misogynie" }'
-        timeout: 10000
+        timeout: 60000
         basic-auth: ${{ secrets.friendica_auth_username }}:${{ secrets.friendica_auth_password }}
         is_debug: true
     - if: steps.translate.outputs.wotag == 'Samstag'
@@ -62,7 +62,7 @@ jobs:
         headers: '{ "Content-Type": "application/json" }'
         data: '{ "source": "Tusky",  "title": "Wenn Abtreibungsanbieter am <<<${{steps.translate.outputs.wotag}}>>> geöffnet haben",  "htmlstatus": "werden heute wieder rund 275 Kinder in Deutschland getötet werden. 96% davon auf Wunsch der Eltern. #prochoice #Ableismus #Misogynie" }'
         params: '{ "source": "Tusky",  "title": "Wenn Abtreibungsanbieter am <<<${{steps.translate.outputs.wotag}}>>> geöffnet haben",  "htmlstatus": "werden heute wieder rund 275 Kinder in Deutschland getötet werden. 96% davon auf Wunsch der Eltern. #prochoice #Ableismus #Misogynie" }'
-        timeout: 10000
+        timeout: 60000
         basic-auth: ${{ secrets.friendica_auth_username }}:${{ secrets.friendica_auth_password }}
         is_debug: true
     - if: steps.translate.outputs.wotag == 'Sonntag'
@@ -75,6 +75,6 @@ jobs:
         headers: '{ "Content-Type": "application/json" }'
         data: '{ "source": "Tusky",  "title": "Wäre heute nicht <<<${{steps.translate.outputs.wotag}}>>>",  "htmlstatus": "würden heute rund 275 Kinder in Deutschland getötet werden. 96% davon auf Wunsch der Eltern. #prochoice #Ableismus #Misogynie" }'
         params: '{ "source": "Tusky",  "title": "Wäre heute nicht <<<${{steps.translate.outputs.wotag}}>>>",  "htmlstatus": "Würden heute rund 275 Kinder in Deutschland getötet werden. 96% davon auf Wunsch der Eltern. #prochoice #Ableismus #Misogynie" }'
-        timeout: 10000
+        timeout: 60000
         basic-auth: ${{ secrets.friendica_auth_username }}:${{ secrets.friendica_auth_password }}
         is_debug: true
