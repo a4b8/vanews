@@ -46,8 +46,8 @@ jobs:
           method: 'POST'
           accept: 200,201,204,429
           headers: '{ "Content-Type": "application/json" }'
-          data: '{ "source": "ETfT",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<b><a href=\"${{steps.link.outputs.url}}\"><<<${{on.rss.outputs.title}}>>></a></b>:<b><br></b><<<${{on.rss.outputs.content}}>>><b><br></b><i><a href=\"${{on.rss.outputs.link}}\"><<<${{on.rss.outputs.link}}>>></a></i>" }'
-          params: '{ "source": "ETfT",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<b><a href=\"${{steps.link.outputs.url}}\"><<<${{on.rss.outputs.title}}>>></a></b>:<b><br></b><<<${{on.rss.outputs.content}}>>><b><br></b><i><a href=\"${{on.rss.outputs.link}}\"><<<${{on.rss.outputs.link}}>>></a></i>" }'
+          data: '{ "source": "ETfT",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<b><<<${{on.rss.outputs.title}}>>></b>:<b><br></b><<<${{on.rss.outputs.content}}>>><b><br></b><i><a href=\"${{on.rss.outputs.link}}\"><<<${{on.rss.outputs.link}}>>></a></i>" }'
+          params: '{ "source": "ETfT",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<b><a href=\"${{steps.link.outputs.url}}\"><<<${{on.rss.outputs.title}}>>></a></b>" }'
           timeout: 10000
           basic-auth: ${{ secrets.friendica_auth_username }}:${{ secrets.friendica_auth_password }}
           is_debug: true
