@@ -125,7 +125,7 @@ jobs:
           server_port: ${{secrets.EMAIL_SERVER_PORT}}
           username: ${{secrets.EMAIL_USERNAME}}
           password: ${{secrets.EMAIL_PASSWORD}}
-          subject: "UNBEKANNT: " ${{on.rss.outputs.title}}
+          subject: ${{steps.buch.outputs.name}} ${{on.rss.outputs.title}}
           # Literal body:
           body: |
             ${{on.rss.outputs.title}}
