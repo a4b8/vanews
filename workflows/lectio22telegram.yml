@@ -30,9 +30,6 @@ jobs:
           elif [[ "${{on.rss.outputs.title}}" == *"an die Römer"* ]]
           then
             echo "::set-output name=name::Römer"
-          elif [[ "${{on.rss.outputs.title}}" == *"Brief des Apostels Paulus an die Römer"* ]]
-          then
-            echo "::set-output name=name::Römer"
           elif [[ "${{on.rss.outputs.title}}" == *"Erster Brief des Apostels Paulus an die Korinther"* ]]
           then
             echo "::set-output name=name::1.Korinther"
@@ -66,6 +63,12 @@ jobs:
           elif [[ "${{on.rss.outputs.title}}" == *"Der zweite Brief an Timotheus"* ]]
           then
             echo "::set-output name=name::2.Timotheus"
+          elif [[ "${{on.rss.outputs.title}}" == *"Erster Brief des Apostels Paulus an Timotheus"* ]]
+          then
+            echo "::set-output name=name::1.Timotheus"
+          elif [[ "${{on.rss.outputs.title}}" == *"Zweiter Brief des Apostels Paulus an Timotheus"* ]]
+          then
+            echo "::set-output name=name::2.Timotheus"            
           elif [[ "${{on.rss.outputs.title}}" == *"Philemon"* ]]
           then
             echo "::set-output name=name::Philemon"
