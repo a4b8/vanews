@@ -22,7 +22,10 @@ jobs:
       - name: Get buch
         id: buch
         run: |
-          if [[ "${{on.rss.outputs.title}}" == *"Apostelgeschichte"* ]]
+          if [[ "${{on.rss.outputs.title}}" == *"ps"* ]]
+          then
+            echo "::set-output name=name::ps"
+          elif [[ "${{on.rss.outputs.title}}" == *"Apostelgeschichte"* ]]
           then
             echo "::set-output name=name::Apostelgeschichte"
           elif [[ "${{on.rss.outputs.title}}" == *"Brief des Apostel Paulus an die Römer"* ]]
