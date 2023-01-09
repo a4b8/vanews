@@ -1,0 +1,35 @@
+on:
+  rss:
+    url:
+      - https://feeds.feedburner.com/cnadeutsche/nachrichten
+    config:
+      format: |
+        item.content = item.content.replace(/<style([\s\S]*?)<\/style>/gi, '').replace(/<script([\s\S]*?)<\/script>/gi, '').replace(/<\/div>/ig, '').replace(/<\/li>/ig, '').replace(/<li>/ig, '').replace(/<\/ul>/ig, '').replace(/<\/p>/ig, '').replace(/<br\s*[\/]?>/gi, '').replace(/<[^>]+>/ig, '').replace(/<\/*code>/ig, '').replace(/<\/*textarea.*>/ig, '').replace(/<\/*samp.*>/ig, '').replace(/<\/*pre.*>/ig, '')
+        return item;
+#      limit: 999
+jobs:
+  send2matrix:
+     runs-on: ubuntu-latest
+     steps:
+       - name: send message
+         uses: s3krit/matrix-message-action@v0.0.3
+         with:
+           room_id: ${{ secrets.MATRIX_NEWSROOM_ID }}
+           access_token: ${{ secrets.MATRIX_ACCESS_TOKEN }}
+           message: |
+             <p><br>
+             <p>${{on.rss.outputs.title}}</p>
+             <p>${{on.rss.outputs.content}}</p>
+             
+             <a href="${{on.rss.outputs.link}}">${{on.rss.outputs.link}}</a>
+             <br><br></p>
+           server: "synod.im"
+  send2slack:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Notify slack
+         env:
+           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+         uses: pullreminders/slack-action@master
+         with:
+           args: '{\"channel\":\"C02KL39HTE0\",\"text\":\"---------------\\n${{on.rss.outputs.title}}\\n${{on.rss.outputs.content}}\\n${{on.rss.outputs.link}}\\n\\n\"}'
