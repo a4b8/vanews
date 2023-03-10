@@ -2,7 +2,7 @@ on:
   rss:
     url: https://feeds.feedburner.com/cnadeutsche/nachrichten
     config:
-      every: "30 */2 * * *"
+      every: "30 */4 * * *"
       limit: 1
 jobs:
   fediverse-mastodon:
