@@ -2,7 +2,7 @@ on:
   rss:
     url: https://www.die-tagespost.de/storage/rss/rss/die-tagespost-komplett.xml
     config:
-      every: "0 */2 * * *"
+      every: "0 */4 * * *"
       limit: 1
       active: true
       filter:
