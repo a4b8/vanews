@@ -12,7 +12,7 @@ on:
       include_rts: false,
     config:
       active: true
-      every: "0 1 * * *"
+      every: "0 8 * * *"
 jobs:
   post2tumblr:
     name: Request
