@@ -2,6 +2,8 @@ on:
   rss:
     url:
       - https://katholischlogisch.blog/feed/rss2
+    config:
+      every: "0 12 * * *"
 jobs:
   fediverse-mastodon:
     name: send2mastodon
