@@ -12,6 +12,7 @@ on:
       include_rts: false,
     config:
       active: true
+      every: "0 8 * * *"
 jobs:
   pipe2nuntii:
     name: Request
