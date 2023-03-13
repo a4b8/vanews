@@ -3,7 +3,7 @@ on:
     url: https://feeds.feedburner.com/cnadeutsche/nachrichten
     config:
       active: true
-      every: "0 1 * * *"
+      every: "0 4 * * *"
 #      every: "0 * * * *"
 #      limit: 1
       format: |
