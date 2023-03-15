@@ -5,10 +5,11 @@ on:
       - https://www.bundesverband-lebensrecht.de/feed/
 #      - https://righttolife.org.uk/feed
       - https://kaleb.de/feed/
-#      - https://blog.secularprolife.org/feeds/posts/default?alt=rss
+      - https://blog.secularprolife.org/feeds/posts/default?alt=rss
     config:
 #      limit: 1
       active: true
+      every: "21 1 * * *"
 jobs:
   lfa-fediverse-mastodon:
     name: send-lfa2mastodon
