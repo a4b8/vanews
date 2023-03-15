@@ -78,7 +78,7 @@ jobs:
           server_port: ${{secrets.EMAIL_SERVER_PORT}}
           username: ${{secrets.EMAIL_USERNAME}}
           password: ${{secrets.EMAIL_PASSWORD}}
-          subject: ${{on.youtube.outputs.title}}
+          subject: YouTube YML ${{on.youtube.outputs.title}}
           # Literal body:
           body: |
             ${{on.youtube.outputs.title}}
