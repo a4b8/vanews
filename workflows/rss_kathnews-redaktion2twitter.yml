@@ -2,7 +2,7 @@ on:
   rss:
     url: http://feeds.feedburner.com/kathnews-redaktion
     config:
-      every: "0 */5 * * *"
+      every: "0 */8 * * *"
       limit: 1
       active: true
       filter:
