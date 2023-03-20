@@ -3,6 +3,7 @@ on:
     url: https://feeds.feedburner.com/cnadeutsche/nachrichten
     config:
       limit: 1
+      every: "30 */4 * * *"
 jobs:
   tgram:
     name: Telegram
