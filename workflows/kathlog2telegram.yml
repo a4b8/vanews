@@ -2,7 +2,8 @@ on:
   rss:
     url: https://katholischlogisch.blog/feed/rss2
     config:
-      every: "0 12 * * *"
+      every: "30 */4 * * *"
+      limit: 1
       active: true
       filter:
         content:

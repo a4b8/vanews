@@ -12,7 +12,7 @@ on:
       include_rts: false
     config:
       active: true
-      every: "0 1 * * *"
+      every: "30 */4 * * *"
       filter:
         full_text:
           $regex: ....+

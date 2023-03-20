@@ -4,6 +4,7 @@ on:
       - https://katholischlogisch.blog/feed/rss2
     config:
       every: "0 12 * * *"
+      limit: 1
 jobs:
   fediverse-mastodon:
     name: send2mastodon

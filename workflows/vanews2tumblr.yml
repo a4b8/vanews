@@ -3,7 +3,8 @@ on:
     url: https://www.vaticannews.va/de.rss.xml
     config:
       active: true
-      every: "0 1 * * *"
+      every: "0 */21 * * *"
+      limit: 1
       filter:
         content:
           $regex: ....+

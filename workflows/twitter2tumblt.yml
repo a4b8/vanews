@@ -12,6 +12,8 @@ on:
       include_rts: true
     config:
       active: true
+      every: "0 */1 * * *"
+      limit: 1
       filter:
         full_text:
           $regex: ....+

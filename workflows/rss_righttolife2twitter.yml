@@ -2,7 +2,7 @@ on:
   rss:
     url: https://righttolife.org.uk/feed
     config:
-      every: "0 */5 * * *"
+      every: "0 */6 * * *"
       limit: 1
       active: false
 # inactive, due to active in lebensrecht.yml

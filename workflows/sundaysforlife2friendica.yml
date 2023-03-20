@@ -12,7 +12,8 @@ on:
       include_rts: true
     config:
       active: true
-      every: "0 6 * * *"
+      every: "0 */6 * * *"
+      limit: 1
       filter:
         full_text:
           $regex: ....+
