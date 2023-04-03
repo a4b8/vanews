@@ -1,13 +1,14 @@
 on:
   rss:
     url:
-      - https://righttolife.org.uk/feed
+      - https://www.vaticannews.va/de.rss.xml
     config:
-      every: "0 */6 * * *"
+      active: false
       format: |
         item.content = item.content.replace(/<style([\s\S]*?)<\/style>/gi, '').replace(/<script([\s\S]*?)<\/script>/gi, '').replace(/<\/div>/ig, '').replace(/<\/li>/ig, '').replace(/<li>/ig, '').replace(/<\/ul>/ig, '').replace(/<\/p>/ig, '').replace(/<br\s*[\/]?>/gi, '').replace(/<[^>]+>/ig, '').replace(/<\/*code>/ig, '').replace(/<\/*textarea.*>/ig, '').replace(/<\/*samp.*>/ig, '').replace(/<\/*pre.*>/ig, '')
         return item;
       limit: 1
+      every: "0 */8 * * *"
 jobs:
   send2matrix:
      runs-on: ubuntu-latest

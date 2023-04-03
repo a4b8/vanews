@@ -11,7 +11,7 @@ on:
       exclude_replies: true
       include_rts: false
     config:
-      active: true
+      active: false
       every: "30 */4 * * *"
       filter:
         full_text:

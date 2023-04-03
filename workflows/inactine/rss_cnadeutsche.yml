@@ -1,9 +1,10 @@
 on:
   rss:
     url:
-      - http://feeds.feedburner.com/kathnews-redaktion
+      - https://feeds.feedburner.com/cnadeutsche/nachrichten
     config:
-      every: "0 */8 * * *"
+      active: false
+      every: "10 */4 * * *"
       format: |
         item.content = item.content.replace(/<style([\s\S]*?)<\/style>/gi, '').replace(/<script([\s\S]*?)<\/script>/gi, '').replace(/<\/div>/ig, '').replace(/<\/li>/ig, '').replace(/<li>/ig, '').replace(/<\/ul>/ig, '').replace(/<\/p>/ig, '').replace(/<br\s*[\/]?>/gi, '').replace(/<[^>]+>/ig, '').replace(/<\/*code>/ig, '').replace(/<\/*textarea.*>/ig, '').replace(/<\/*samp.*>/ig, '').replace(/<\/*pre.*>/ig, '')
         return item;

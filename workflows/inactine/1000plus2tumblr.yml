@@ -1,17 +1,9 @@
 on:
   rss:
-    url: https://www.vaticannews.va/de.rss.xml
+    url: http://www.1000plus.net/rss.xml
     config:
-      active: true
-      every: "0 */4 * * *"
-      limit: 1
-      filter:
-        content:
-          $regex: ....+
-        title:
-          $regex: ....+
-        link:
-          $regex: ....+
+      active: false
+      every: "0 1 * * *"
 jobs:
   post2tumblr:
     name: Request
@@ -23,4 +15,4 @@ jobs:
           key: ${{ secrets.TUMBLR_WEBHOOK_KEY }}
           value1: ${{ on.rss.outputs.title }}
           value2: "${{ on.rss.outputs.content }} </br> ${{on.rss.outputs.link}}"
-          value3: "Vatican News"
+          value3: "1000plus"

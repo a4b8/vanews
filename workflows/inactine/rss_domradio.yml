@@ -1,13 +1,14 @@
 on:
   rss:
     url:
-      - https://www.vaticannews.va/de.rss.xml
+      - https://www.domradio.de/rss-feeds/domradio-rss.xml
     config:
+      active: false
+      every: "0 */4 * * *"
       format: |
         item.content = item.content.replace(/<style([\s\S]*?)<\/style>/gi, '').replace(/<script([\s\S]*?)<\/script>/gi, '').replace(/<\/div>/ig, '').replace(/<\/li>/ig, '').replace(/<li>/ig, '').replace(/<\/ul>/ig, '').replace(/<\/p>/ig, '').replace(/<br\s*[\/]?>/gi, '').replace(/<[^>]+>/ig, '').replace(/<\/*code>/ig, '').replace(/<\/*textarea.*>/ig, '').replace(/<\/*samp.*>/ig, '').replace(/<\/*pre.*>/ig, '')
         return item;
       limit: 1
-      every: "0 */8 * * *"
 jobs:
   send2matrix:
      runs-on: ubuntu-latest
