@@ -3,7 +3,7 @@ on:
     url: https://www.vaticannews.va/de.rss.xml
     config:
       active: true
-      every: "0 */21 * * *"
+      every: "0 */4 * * *"
       limit: 1
       filter:
         content:

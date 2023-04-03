@@ -2,7 +2,7 @@ on:
   twitter:
     api: statuses/user_timeline
     config:
-      active: true
+      active: false
       every: "30 */4 * * *"
       limit: 1
     auth:
