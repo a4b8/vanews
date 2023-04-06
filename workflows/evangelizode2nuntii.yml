@@ -1,7 +1,7 @@
 on:
   rss:
     url:
-      - http://evangelizo.org/rss/v2/evangelizo_rss-de.xml
+#      - http://evangelizo.org/rss/v2/evangelizo_rss-de.xml
       - https://rss.evangelizo.org/rss/v2/evangelizo_rss-de.xml
     config:
       every: "0 2 * * *"

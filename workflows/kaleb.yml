@@ -1,0 +1,81 @@
+on:
+  rss:
+    url:
+      - https://kaleb.de/feed/
+    config:
+      limit: 1
+      active: true
+      every: "30 1 * * *"
+jobs:
+  lfa-fediverse-mastodon:
+    name: send-lfa2mastodon
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Call fediverse'
+        uses: rzr/fediverse-action@master
+        with:
+          access-token: ${{ secrets.MASTODON_ACCESS_TOKEN_LFA }}
+          message: "${{on.rss.outputs.title}}  ${{on.rss.outputs.link}}"
+          host: "muenchen.social" # If not using default "mastodon.social"
+  lfa-tweet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ethomson/send-tweet-action@v1
+        with:
+          status: "${{on.rss.outputs.title}} ${{on.rss.outputs.link}}"
+          consumer-key: ${{ secrets.TWITTER_CONSUMER_KEY }}
+          consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+          access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          access-token-secret: ${{ secrets.TWITTER_ACCESS_SECRET }}
+  lfa-email:
+    name: Post LfA by email
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send mail
+        uses: dawidd6/action-send-mail@v2
+        with:
+          server_address: ${{secrets.EMAIL_SERVER_ADDRESS}}
+          server_port: ${{secrets.EMAIL_SERVER_PORT}}
+          username: ${{secrets.EMAIL_USERNAME}}
+          password: ${{secrets.EMAIL_PASSWORD}}
+          subject: ${{ on.rss.outputs.title }}
+          # Literal body:
+          body: ${{ on.rss.outputs.content }}
+          # Read file contents as body:
+          to: ${{secrets.EMAIL_TO_LFA}}
+          from: ${{secrets.EMAIL_FROM}}
+          # Optional content type (defaults to text/plain):
+          content_type: text/html
+  lebensrecht2friendica:
+    name: 'Post Lebensrecht to Friendica'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Call friendica API'
+        id: api
+        uses: actionsflow/axios@v1
+        with:
+          url: https://libranet.de/api/statuses/update.json
+          method: 'POST'
+          accept: 200,201,204,429
+          headers: '{ "Content-Type": "application/json" }'
+          data: '{ "source": "Fedilab",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<<<${{on.rss.outputs.contentSnippet}}>>><br><<<${{on.rss.outputs.link}}>>>" }'
+          params: '{ "source": "Fedilab",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<<<${{on.rss.outputs.contentSnippet}}>>><br><<<${{on.rss.outputs.link}}>>>" }'
+          timeout: 60000
+          basic-auth: ${{ secrets.friendica_auth_username }}:${{ secrets.friendica_auth_password }}
+          is_debug: true
+      - run: echo ${{ steps.api.outputs.status }}
+      - run: echo ${{ steps.api.outputs.data }}
+      - run: echo ${{ steps.api.outputs.headers }}
+  lebensrecht2telegram:
+    name: Telegram
+    runs-on: ubuntu-latest
+    steps:
+      - name: send telegram message
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+              ${{on.rss.outputs.title}}
+              
+              ${{on.rss.outputs.link}}
