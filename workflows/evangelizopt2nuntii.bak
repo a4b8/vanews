@@ -1,0 +1,44 @@
+on:
+  rss:
+    url:
+#      - http://evangelizo.org/rss/v2/evangelizo_rss-pt.xml
+      - https://rss.evangelizo.org/rss/v2/evangelizo_rss-pt.xml
+    config:
+      every: "0 9 * * *"
+      filter:
+        content:
+          $regex: ....+
+#         categories:
+#           $not:
+#             $regex: (MEDITATIO|PSALMUS)
+jobs:
+#   post2untii:
+#     name: Request
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Make a HTTP Request
+#         uses: actionsflow/axios@main
+#         with:
+#           url: ${{ secrets.NUNTII_WEBHOOK_URL }}
+#           method: POST
+#           body: |
+#             {
+#               "value1": "<<<${{ on.rss.outputs.title }}>>>",
+#               "value2": "<<<${{ on.rss.outputs.content }}>>>",
+#               "value3": "português"
+#             }
+  pipe2nuntii:
+    name: Request
+    runs-on: ubuntu-latest
+    steps:
+      - name: Make a HTTP Request
+        uses: actionsflow/axios@main
+        with:
+          url: ${{ secrets.NUNTII_PIPE_URL }}
+          method: POST
+          body: |
+            {
+              "title": "<<<${{ on.rss.outputs.title }}>>>",
+              "content": "<<<${{ on.rss.outputs.content }}>>>",
+              "category": "português"
+            }

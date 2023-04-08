@@ -1,10 +1,10 @@
 on:
   rss:
     url:
-#      - http://evangelizo.org/rss/v2/evangelizo_rss-sp.xml
+#      - http://evangelizo.org/rss/v2/evangelizo_rss-de.xml
       - https://rss.evangelizo.org/rss/v2/evangelizo_rss-sp.xml
     config:
-      every: "0 3 * * *"
+      every: "0 2 * * *"
       filter:
         content:
           $regex: ....+
@@ -12,33 +12,22 @@ on:
 #           $not:
 #             $regex: MEDITATIO
 jobs:
-#   post2untii:
-#     name: Request
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Make a HTTP Request
-#         uses: actionsflow/axios@main
-#         with:
-#           url: ${{ secrets.NUNTII_WEBHOOK_URL }}
-#           method: POST
-#           body: |
-#             {
-#               "value1": "<<<${{ on.rss.outputs.title }}>>>",
-#               "value2": "<<<${{ on.rss.outputs.content }}>>>",
-#               "value3": "español"
-#             }
-  pipe2nuntii:
+  maildraft2nuntii:
     name: Request
     runs-on: ubuntu-latest
     steps:
-      - name: Make a HTTP Request
-        uses: actionsflow/axios@main
+      - name: Send draft mail
+        uses: dawidd6/action-send-mail@v2
         with:
-          url: ${{ secrets.NUNTII_PIPE_URL }}
-          method: POST
+          server_address: ${{secrets.EMAIL_SERVER_ADDRESS}}
+          server_port: ${{secrets.EMAIL_SERVER_PORT}}
+          username: ${{secrets.EMAIL_USERNAME}}
+          password: ${{secrets.EMAIL_PASSWORD}}
+          subject: ${{on.rss.outputs.title}}
           body: |
-            {
-              "title": "<<<${{ on.rss.outputs.title }}>>>",
-              "content": "<<<${{ on.rss.outputs.content }}>>>",
-              "category": "español"
-            }
+            ${{on.rss.outputs.content}}
+          # Read file contents as body:
+          to: ${{secrets.EMAIL_TO_NUNTII_DRAFT}}
+          from: ${{secrets.EMAIL_FROM}}
+          # Optional content type (defaults to text/plain):
+          content_type: text/html
