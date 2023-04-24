@@ -4,12 +4,13 @@ on:
       - http://evangelizo.org/rss/v2/evangelizo_rss-de.xml
       - https://rss.evangelizo.org/rss/v2/evangelizo_rss-de.xml
     config:
-      every: "0 7 * * *"
+      every: "0 8 * * *"
+      active: false
       filter:
         content:
           $regex: ....+
         categories:
-          $regex: LECTIO.1
+          $regex: LECTIO.2
 jobs:
   lectio2friendica:
     name: 'Post Lesung to Friendica'
