@@ -15,7 +15,7 @@ jobs:
           access-token: ${{ secrets.MASTODON_ACCESS_TOKEN_VANEWS }}
           message: |
               ${{on.rss.outputs.title}}
-              ${{on.rss.outputs.link}}
+              <a href="${{on.rss.outputs.link}}">${{on.rss.outputs.link}}</a>
           host: "muenchen.social" # If not using default "mastodon.social"
       - name: Print Outputs
         env:

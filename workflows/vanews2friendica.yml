@@ -33,8 +33,8 @@ jobs:
           # Body request
           # Apply only to POST|PUT request
           # support escape string, use <<<${{env.TEST}}>>>
-          data: '{ "source": "Fedilab",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<<<${{on.rss.outputs.contentSnippet}}>>><br><<<${{on.rss.outputs.link}}>>>" }'
-          params: '{ "source": "Fedilab",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<<<${{on.rss.outputs.contentSnippet}}>>><br><<<${{on.rss.outputs.link}}>>>" }'
+          data: '{ "source": "Fedilab",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<<<${{on.rss.outputs.contentSnippet}}>>><br><a href=\"${{on.rss.outputs.link}}\"><<<${{on.rss.outputs.link}}>>></a>", "include_entities": "true" }'
+          params: '{ "source": "Fedilab",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<<<${{on.rss.outputs.contentSnippet}}>>><br><a href=\"${{on.rss.outputs.link}}\"><<<${{on.rss.outputs.link}}>>></a>", "include_entities": "true" }'
 
           # Request timeout (millisec)
           # default is `0` (no timeout)
