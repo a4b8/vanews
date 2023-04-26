@@ -59,8 +59,8 @@ jobs:
           method: 'POST'
           accept: 200,201,204,429
           headers: '{ "Content-Type": "application/json" }'
-          data: '{ "source": "Fedilab",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<<<${{on.rss.outputs.contentSnippet}}>>><br><<<${{on.rss.outputs.link}}>>>" }'
-          params: '{ "source": "Fedilab",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<<<${{on.rss.outputs.contentSnippet}}>>><br><<<${{on.rss.outputs.link}}>>>" }'
+          data: '{ "source": "Fedilab",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<<<${{on.rss.outputs.contentSnippet}}>>><br><<<${{on.rss.outputs.link}}>>>", "external_url": "${{on.rss.outputs.link}}" }'
+          params: '{ "source": "Fedilab",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<<<${{on.rss.outputs.contentSnippet}}>>><br><<<${{on.rss.outputs.link}}>>>", "external_url": "${{on.rss.outputs.link}}" }'
           timeout: 60000
           basic-auth: ${{ secrets.friendica_auth_username }}:${{ secrets.friendica_auth_password }}
           is_debug: true
