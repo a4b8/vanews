@@ -27,12 +27,12 @@ jobs:
       - name: 'Call friendica API'
         uses: actionsflow/axios@v1
         with:
-          url: https://libranet.de/api/statuses/update.json
+          url: https://libranet.de/api/statuses/update
           method: 'POST'
           accept: 200,201,204,429
           headers: '{ "Content-Type": "application/json" }'
-          data: '{ "source": "Youtube",  "title": "<<<${{on.youtube.outputs.title}}>>>",  "htmlstatus": "<p><b><<<${{on.youtube.outputs.description}}>>><\/b><\/p><br><br><p> <a href=\"<<<${{on.youtube.outputs.link}}>>>\"><<<${{on.youtube.outputs.link}}>>><\/a><\/p>" }'
-          params: '{ "source": "Youtube",  "title": "<<<${{on.youtube.outputs.title}}>>>",  "htmlstatus": "<p><b><<<${{on.youtube.outputs.description}}>>><\/b><\/p><br><br><p> <a href=\"<<<${{on.youtube.outputs.link}}>>>\"><<<${{on.youtube.outputs.link}}>>><\/a><\/p>" }'
+          data: '{ "source": "Youtube",  "title": "<<<${{on.youtube.outputs.title}}>>>",  "htmlstatus": "<p><b><<<${{on.youtube.outputs.description}}>>><\/b><\/p><br><br><p> <a href=\"<<<${{on.youtube.outputs.link}}>>>\"><<<${{on.youtube.outputs.link}}>>><\/a><\/p>", "include_entities": "true" }'
+          params: '{ "source": "Youtube",  "title": "<<<${{on.youtube.outputs.title}}>>>",  "htmlstatus": "<p><b><<<${{on.youtube.outputs.description}}>>><\/b><\/p><br><br><p> <a href=\"<<<${{on.youtube.outputs.link}}>>>\"><<<${{on.youtube.outputs.link}}>>><\/a><\/p>", "include_entities": "true" }'
           timeout: 60000
           basic-auth: ${{ secrets.friendica_auth_username }}:${{ secrets.friendica_auth_password }}
           is_debug: true

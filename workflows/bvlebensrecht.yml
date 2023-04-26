@@ -54,12 +54,12 @@ jobs:
         id: api
         uses: actionsflow/axios@v1
         with:
-          url: https://libranet.de/api/statuses/update.json
+          url: https://libranet.de/api/statuses/update
           method: 'POST'
           accept: 200,201,204,429
           headers: '{ "Content-Type": "application/json" }'
-          data: '{ "source": "Fedilab",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<<<${{on.rss.outputs.contentSnippet}}>>><br><a href=\"${{on.rss.outputs.link}}\"><<<${{on.rss.outputs.link}}>>></a>", "include_entities": "true" }'
-          params: '{ "source": "Fedilab",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<<<${{on.rss.outputs.contentSnippet}}>>><br><a href=\"${{on.rss.outputs.link}}\"><<<${{on.rss.outputs.link}}>>></a>", "include_entities": "true" }'
+          data: '{ "source": "Fedilab",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<<<${{on.rss.outputs.contentSnippet}}>>><br><<<${{on.rss.outputs.link}}>>>", "include_entities": "true" }'
+          params: '{ "source": "Fedilab",  "title": "<<<${{on.rss.outputs.title}}>>>",  "htmlstatus": "<<<${{on.rss.outputs.contentSnippet}}>>><br><<<${{on.rss.outputs.link}}>>>", "include_entities": "true" }'
           timeout: 60000
           basic-auth: ${{ secrets.friendica_auth_username }}:${{ secrets.friendica_auth_password }}
           is_debug: true
