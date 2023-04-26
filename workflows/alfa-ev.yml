@@ -15,7 +15,9 @@ jobs:
         uses: rzr/fediverse-action@master
         with:
           access-token: ${{ secrets.MASTODON_ACCESS_TOKEN_LFA }}
-          message: "${{on.rss.outputs.title}}  ${{on.rss.outputs.link}}"
+          message: |
+              ${{on.rss.outputs.title}}
+              ${{on.rss.outputs.link}}
           host: "muenchen.social" # If not using default "mastodon.social"
   lfa-tweet:
     runs-on: ubuntu-latest
