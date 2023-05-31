@@ -2,7 +2,7 @@ on:
   rss:
     url: https://feeds.feedburner.com/cnadeutsche/nachrichten
     config:
-      active: true
+      active: false
       every: "0 4 * * *"
 #      every: "0 * * * *"
       limit: 1
