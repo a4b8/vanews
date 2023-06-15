@@ -2,6 +2,7 @@ on:
   twitter:
     config:
       every: "30 6 * * *"
+      active: false
     api: statuses/user_timeline
     auth:
       consumer_key: ${{ secrets.TWITTER_CONSUMER_KEY }}
