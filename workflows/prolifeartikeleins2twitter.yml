@@ -3,7 +3,7 @@ on:
     url: https://hnrss.org/newest
     config:
       limit: 1
-      active: true
+      active: false
       every: "0 8 */4 * *"
 jobs:
   tweet:
