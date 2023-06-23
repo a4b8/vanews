@@ -5,6 +5,7 @@ on:
     config:
       every: "0 12 * * *"
       limit: 1
+      active: false
 jobs:
   fediverse-mastodon:
     name: send2mastodon
