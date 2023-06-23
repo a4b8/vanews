@@ -4,7 +4,7 @@ on:
       - https://blog.secularprolife.org/feeds/posts/default?alt=rss
     config:
       limit: 1
-      active: false
+      active: true
       every: "0 */6 * * *"
 jobs:
   lfa-fediverse-mastodon:
@@ -19,16 +19,16 @@ jobs:
               ${{on.rss.outputs.title}}
               ${{on.rss.outputs.link}}
           host: "muenchen.social" # If not using default "mastodon.social"
-  lfa-tweet:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: ethomson/send-tweet-action@v1
-        with:
-          status: "${{on.rss.outputs.title}} ${{on.rss.outputs.link}}"
-          consumer-key: ${{ secrets.TWITTER_CONSUMER_KEY }}
-          consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
-          access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
-          access-token-secret: ${{ secrets.TWITTER_ACCESS_SECRET }}
+#  lfa-tweet:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: ethomson/send-tweet-action@v1
+#        with:
+#          status: "${{on.rss.outputs.title}} ${{on.rss.outputs.link}}"
+#          consumer-key: ${{ secrets.TWITTER_CONSUMER_KEY }}
+#          consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+#          access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+#          access-token-secret: ${{ secrets.TWITTER_ACCESS_SECRET }}
   lfa-email:
     name: Post LfA by email
     runs-on: ubuntu-latest
