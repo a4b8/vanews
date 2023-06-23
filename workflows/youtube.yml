@@ -41,16 +41,16 @@ jobs:
       - run: echo ${{ steps.api.outputs.status }}
       - run: echo ${{ steps.api.outputs.data }}
       - run: echo ${{ steps.api.outputs.headers }}
-  tweet:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: ethomson/send-tweet-action@v1
-        with:
-          status: "${{on.youtube.outputs.title}}  ${{on.youtube.outputs.link}}"
-          consumer-key: ${{ secrets.TWITTER_CONSUMER_KEY }}
-          consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
-          access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
-          access-token-secret: ${{ secrets.TWITTER_ACCESS_SECRET }}
+#  tweet:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: ethomson/send-tweet-action@v1
+#        with:
+#          status: "${{on.youtube.outputs.title}}  ${{on.youtube.outputs.link}}"
+#          consumer-key: ${{ secrets.TWITTER_CONSUMER_KEY }}
+#          consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+#          access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+#          access-token-secret: ${{ secrets.TWITTER_ACCESS_SECRET }}
   email:
     name: Post a email
     runs-on: ubuntu-latest
