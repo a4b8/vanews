@@ -4,7 +4,7 @@ on:
       - https://blog.secularprolife.org/feeds/posts/default?alt=rss
     config:
       limit: 1
-      active: true
+      active: false
       every: "0 */6 * * *"
 jobs:
   lfa-fediverse-mastodon:
