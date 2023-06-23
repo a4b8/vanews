@@ -5,7 +5,7 @@ on:
     config:
       every: "0 12 * * *"
       limit: 1
-      active: false
+      active: true
 jobs:
   fediverse-mastodon:
     name: send2mastodon
@@ -19,16 +19,16 @@ jobs:
               ${{on.rss.outputs.title}}
               ${{on.rss.outputs.link}}
           host: "muenchen.social" # If not using default "mastodon.social"
-  tweet:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: ethomson/send-tweet-action@v1
-        with:
-          status: "${{on.rss.outputs.title}} ${{on.rss.outputs.link}}"
-          consumer-key: ${{ secrets.TWITTER_CONSUMER_KEY }}
-          consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
-          access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
-          access-token-secret: ${{ secrets.TWITTER_ACCESS_SECRET }}
+#  tweet:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: ethomson/send-tweet-action@v1
+#        with:
+#          status: "${{on.rss.outputs.title}} ${{on.rss.outputs.link}}"
+#          consumer-key: ${{ secrets.TWITTER_CONSUMER_KEY }}
+#          consumer-secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+#          access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+#          access-token-secret: ${{ secrets.TWITTER_ACCESS_SECRET }}
   katholischlogisch2friendica:
     name: 'Post katholischlogisch to Friendica'
     runs-on: ubuntu-latest
