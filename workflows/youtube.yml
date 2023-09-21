@@ -8,7 +8,7 @@ on:
       - UCrI002TopZgQfykEGJYHweA
       - UCoRyVKrf8l9N-jZDXEyrZ_g
     config:
-      active: false
+      active: false #
 jobs:
   fediverse-mastodon:
     name: send2mastodon
