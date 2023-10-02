@@ -4,7 +4,7 @@ on:
       - https://www.alfa-ev.de/feed/
     config:
       limit: 1
-      active: true
+      active: false
       every: "30 1 * * *"
 jobs:
   lfa-fediverse-mastodon:
