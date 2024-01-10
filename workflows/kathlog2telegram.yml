@@ -1,6 +1,6 @@
 on:
   rss:
-    url: https://katholischlogisch.blog/feed/rss2
+    url: https://katholischlogisch.wordpress.com/feed/rss2
     config:
       every: "30 */4 * * *"
       limit: 1
